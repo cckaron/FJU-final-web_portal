@@ -47,7 +47,7 @@
 
     <video autoplay loop muted playsinline src="images/car.mp4"></video>
 </section>
-<div class="container" style="padding-bottom: 50px;padding-top: 50px">
+<div class="container" style="padding-bottom: 50px;padding-top: 75px">
     @yield('content')
 </div>
 <footer id="footer">
@@ -66,7 +66,7 @@
 
         </div>
         <div class="copyright">
-            &copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+
         </div>
     </div>
 </footer>

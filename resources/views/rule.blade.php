@@ -12,7 +12,7 @@
 
 @section('style')
     /*jQuery Basic Table, Author: Jerry Low*/
-    table{background:white;border-collapse:collapse;width:80%;position: relative;top: 17px;left: 10%;}
+    table{background:white;border-collapse:collapse;width:80%;position: relative;left: 10%;}
     table tr,table th,table td{border:none;border-bottom:1px solid #e4ebeb;font-family:'Lato',sans-serif;font-size:.875rem}
     table th,table td{padding:10px 12px;text-align:left}
     table th{background:#FF8888;color:#ffffff;text-transform:uppercase}
