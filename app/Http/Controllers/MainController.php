@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function getIndex(){
-        return view('layout.master');
+        return view('index');
+    }
+    public function getRule(){
+        return view('rule');
+    }
+    public function getVideo(){
+        return view('video');
+    }
+    public function getMember(){
+        return view('member');
     }
 }

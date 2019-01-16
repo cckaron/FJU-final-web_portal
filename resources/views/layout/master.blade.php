@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Eye of Intelligence</title>
     <meta charset="utf-8" />
+
+    <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -23,8 +24,9 @@
 <nav id="menu">
     <ul class="links">
         <li><a href="{{ route('main.index') }}">首頁</a></li>
-        <li><a href="{{ route('main.index') }}">即時影片</a></li>
-        <li><a href="{{ route('main.index') }}">研究成員</a></li>
+        <li><a href="{{ route('main.rule') }}">規則介紹</a></li>
+        <li><a href="{{ route('main.video') }}">即時影片</a></li>
+        <li><a href="{{ route('main.member') }}">研究成員</a></li>
     </ul>
 </nav>
 
@@ -32,7 +34,7 @@
 <section id="banner">
     <div class="inner">
         <div class="inner">
-            <img src="images/logo.jpg" height="25%" width="25%" align="right" >
+            <img src="images/logo.jpg" height="25%" width="25%" align="right" style="opacity:0.5">
         <h1>Eye of Intelligence</h1><br>
 
         <h1>開天眼</h1>
@@ -42,6 +44,9 @@
 
     <video autoplay loop muted playsinline src="images/car.mp4"></video>
 </section>
+<div class="container">
+    @yield('content')
+</div>
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/browser.min.js"></script>

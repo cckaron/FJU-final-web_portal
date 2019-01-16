@@ -17,12 +17,16 @@ Route::get('/', [
     'uses' => 'MainController@getIndex',
     'as' => 'main.index'
 ]);
+Route::get('/Rule', [
+    'uses' => 'MainController@getRule',
+    'as' => 'main.rule'
+]);
+Route::get('/Video', [
+    'uses' => 'MainController@getVideo',
+    'as' => 'main.video'
+]);
 
-//Route::get('/video', [
-//    'uses' => '',
-//    'as' => ''
-//]);
-//Route::get('/member', [
-//    'uses' => '',
-//    'as' => ''
-//]);
+Route::get('/Member', [
+    'uses' => 'MainController@getMember',
+    'as' => 'main.member'
+]);
