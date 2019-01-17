@@ -52,15 +52,16 @@
 </div>
 <footer id="footer">
     <div class="inner">
-        <div class="content">
-            <section>
+        <div class="content" style="width: 100%;">
+            <section style="width: 80%;">
                 <h3>聯絡資訊</h3>
-                <ul class="alt" style="width:500px ">
+                <ul class="alt">
                     <li><b><font color="#FF0000">凱哥</font></b> &nbsp;高俊凱 &nbsp;&nbsp;&nbsp;手機：0981429828 &nbsp;&nbsp;&nbsp;信箱：405402091@gapp.fju.edu.tw</li>
                     <li><b><font color="#FF0000">蝴蝶</font></b> &nbsp;何俞樺 &nbsp;&nbsp;&nbsp;手機：0975762822 &nbsp;&nbsp;&nbsp;信箱：a0910020888@gmail.com</li>
                     <li><b><font color="#FF0000">助教</font></b> &nbsp;陳建軒 &nbsp;&nbsp;&nbsp;手機：0909982918 &nbsp;&nbsp;&nbsp;信箱：b02180202@gmail.com</li>
                     <li><b><font color="#FF0000">蔡媽</font></b> &nbsp;蔡依庭 &nbsp;&nbsp;&nbsp;手機：0909982859 &nbsp;&nbsp;&nbsp;信箱：tina604201510128@gmail.com</li>
                     <li><b><font color="#FF0000">Bobo</font></b> &nbsp;黃柏勳 &nbsp;&nbsp;&nbsp;手機：0905350342 &nbsp;&nbsp;&nbsp;信箱：nbx7777@gmail.com</li>
+                    <li><b><font color="#FF0000">秀魚</font></b> &nbsp;張沛心 &nbsp;&nbsp;&nbsp;手機：0937216113 &nbsp;&nbsp;&nbsp;信箱：sandy230207@gmail.com</li>
                 </ul>
             </section>
 

@@ -13,10 +13,10 @@
 @section('style')
     /*jQuery Basic Table, Author: Jerry Low*/
     table{background:white;border-collapse:collapse;width:80%;position: relative;left: 10%;}
-    table tr,table th,table td{border:none;border-bottom:1px solid #e4ebeb;font-family:'Lato',sans-serif;font-size:.875rem}
+    table tr,table th,table td{border:none;border-bottom:0px solid #e4ebeb;font-family:'Lato',sans-serif;font-size:1.5rem}
     table th,table td{padding:10px 12px;text-align:left}
     table th{background:#FF8888;color:#ffffff;text-transform:uppercase}
-    table tr td{background:#FFC8B4;color:#000000}
+    table tr td{background:#ffffff;color:#000000}
     table tr:nth-of-type(2n+2) td{background:#ffffff}
     table.bt tfoot th,table.bt tfoot td,table.bt tbody td{font-size:.8125rem;padding:0}
     table.bt tfoot th:before,table.bt tfoot td:before,table.bt tbody td:before{background:#56a2cf;color:white;margin-right:10px;padding:2px 10px}
@@ -29,9 +29,38 @@
     table.bt tfoot th.bt-hide,table.bt tfoot td.bt-hide,table.bt tbody td.bt-hide{display:none}
     table.bt tfoot th .bt-content,table.bt tfoot td .bt-content,table.bt tbody td .bt-content{vertical-align:top}
     .bt-wrapper.active{max-height:310px;overflow:auto;-webkit-overflow-scrolling:touch}
+    .ccle {
+    margin: 0px auto;/*div對齊效果*/
+    text-align: center;/*display: inline對齊效果*/
+    }
+
+    .ccle div {
+    display: inline-block;/*讓div並排*/
+    vertical-align: top;/*就算個個div行數不同，也一律向上對齊*/
+    width: 700px;
+    height: 100%;
+    border-radius:3px;
+
+    }
 @endsection
 
 @section('content')
+
+    <div class="ccle">
+        <div style="margin-top: 10px">
+        <img src="images/block.png" width="70%" height="70%">
+    </div>
+    <div>
+        <h2>規則介紹</h2>
+        <p align="left" style="font-size: 20px">當路口紅綠燈為紅燈時，鏡頭將會辨識同條馬路停止的車輛數並將兩鏡頭數據相加，
+            相加總數來給函式判斷是否應該調整該馬路轉換成綠燈時的秒數。<br>
+            每次紅燈判斷後將可能更動其綠燈秒數，其綠燈秒數為預設值且每次判斷完將會歸回預設值。<br>
+            例：當1+2向馬路為紅燈時，1鏡頭和2鏡頭將會辨識在停紅燈的車輛並將兩鏡頭所得數相加再丟進函式判斷。<br>
+            如1鏡頭方向辨識到的車輛數有5輛車；2鏡頭方向辨識到的車輛數有7輛，相加後所得車輛數為12輛。<br>
+            此時，函式判斷就會進入情境二，將會把1+2馬路方向的綠燈秒數從原本的秒數-10秒。
+        </p>
+        </div>
+    </div>
     <table id="RWD">
         <thead>
         <tr>
