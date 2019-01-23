@@ -30,3 +30,8 @@ Route::get('/Member', [
     'uses' => 'MainController@getMember',
     'as' => 'main.member'
 ]);
+
+Route::get('/arduino/{light1}', [
+   'uses' => 'ArduinoController@getWriteSeconds',
+   'as' => 'arduino.writeSeconds'
+]);

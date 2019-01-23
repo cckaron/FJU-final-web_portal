@@ -48,7 +48,7 @@ section, summary, time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline; }
+   }
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -612,14 +612,13 @@ ul.alt li {
   overflow-x: auto; }
 
 table {
-  margin: 0 0 2rem 0;
   width: 100%; }
   table tbody tr {
     border: solid 1px;
     border-left: 0;
     border-right: 0; }
   table td {
-    padding: 0.75rem 0.75rem; }
+    padding: 0rem 0rem; }
   table th {
     font-size: 0.9rem;
     font-weight: 600;
@@ -2203,12 +2202,16 @@ ul.icons {
   @media screen and (max-width: 980px) {
     #cta {
       background-attachment: scroll; } }
+#goldfish {
+    background-color: #111111;
+    color: rgba(255, 255, 255, 0.5);
 
+}
 /* Footer */
 #footer {
   background-color: #111111;
   color: rgba(255, 255, 255, 0.5);
-  padding: 8rem 0 6rem 0 ;
+  padding: 0 0 0 0 ;
 }
   #footer input, #footer select, #footer textarea {
     color: #ffffff; }
@@ -2381,7 +2384,7 @@ ul.icons {
           padding-right: 0; } }
   @media screen and (max-width: 736px) {
     #footer {
-      padding: 3rem 0 1rem 0 ; }
+      padding: 0 0 0 0 ; }
       #footer .content section {
         width: 100%; }
         #footer .content section:last-child {

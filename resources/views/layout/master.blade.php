@@ -8,9 +8,9 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="{{ URL::to('assets/css/main.css') }}" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
-    <style>@yield('style')</style>
     <script @yield('script')></script>
+    <style>@yield('style')</style>
+    <script @yield('script1')></script>
 </head>
 <body class="is-preload">
 
@@ -50,8 +50,8 @@
 <div class="container" style="padding-bottom: 50px;padding-top: 75px">
     @yield('content')
 </div>
-<footer id="footer">
-    <div class="inner">
+<footer id="footer" style="padding:0 0 0 0;">
+   <div class="inner" style="padding-top: 1%">
         <div class="content" style="width: 100%;">
             <section style="width: 80%;">
                 <h3>聯絡資訊</h3>
@@ -61,7 +61,8 @@
                     <li><b><font color="#FF0000">助教</font></b> &nbsp;陳建軒 &nbsp;&nbsp;&nbsp;手機：0909982918 &nbsp;&nbsp;&nbsp;信箱：b02180202@gmail.com</li>
                     <li><b><font color="#FF0000">蔡媽</font></b> &nbsp;蔡依庭 &nbsp;&nbsp;&nbsp;手機：0909982859 &nbsp;&nbsp;&nbsp;信箱：tina604201510128@gmail.com</li>
                     <li><b><font color="#FF0000">Bobo</font></b> &nbsp;黃柏勳 &nbsp;&nbsp;&nbsp;手機：0905350342 &nbsp;&nbsp;&nbsp;信箱：nbx7777@gmail.com</li>
-                    <li><b><font color="#FF0000">秀魚</font></b> &nbsp;張沛心 &nbsp;&nbsp;&nbsp;手機：0937216113 &nbsp;&nbsp;&nbsp;信箱：sandy230207@gmail.com</li>
+                    <li><b><font color="#FF0000">金魚</font></b> &nbsp;張沛心 &nbsp;&nbsp;&nbsp;手機：0937216113 &nbsp;&nbsp;&nbsp;信箱：sandy230207@gmail.com</li>
+                    <li><b><font color="#FF0000">帥哥</font></b> &nbsp;郭鎮源 &nbsp;&nbsp;&nbsp;手機：0988955511 &nbsp;&nbsp;&nbsp;信箱：asdf024681029@gmail.com</li>
                 </ul>
             </section>
 
