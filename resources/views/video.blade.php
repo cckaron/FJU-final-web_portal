@@ -4,105 +4,105 @@
     即時影片
 @endsection
 
-@section('script1')
-    function openCity(evt, cityName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
 
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-    }
-@endsection
 
 @section('style')
-    /* Style the tab */
+
     .tab {
     overflow: hidden;
     border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #FFC37B;
     }
 
-    /* Style the buttons that are used to open the tab content */
+
     .tab button {
     background-color: inherit;
     float: left;
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 0px 25px;
     transition: 0.3s;
     }
 
-    /* Change background color of buttons on hover */
+
     .tab button:hover {
     background-color: #ddd;
     }
 
-    /* Create an active/current tablink class */
+
     .tab button.active {
-    background-color: #ccc;
+    background-color: #E97300;
     }
 
-    /* Style the tab content */
+
     .tabcontent {
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     border-top: none;
     }
 @endsection
 
 @section('content')
-    <!--<table class="sa" width=100%>
-        <tr width="100%">
-            <td align="left" width=10%>
-                <ul class="">
-                    <li><a href="video1.php" target="sf"><h4>一二鏡頭</h4></a></li>
-                </ul>
-            </td>
-            <td align="left" width=10%>
-                <ul>
-                    <li><a href="video2.html" target="sf"><h4>三四鏡頭</h4></a></li>
-                </ul>
-            </td>
+
+    <table  style="width: 70%;margin-left: 15%;" border="5">
+
+        <tr style="background-color:white">
+            <td rowspan="6" width="40%"><img src="images/block.png" width="90%" style="margin-left: 10%;margin-top: 7%"></td>
+            <td colspan="2" width=60% align="center" style="background-color:#FFB35A" ><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原本秒數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    偵測更改秒數</b></td>
         </tr>
-        <tr valign=top height=100%>
-            <td align="center" height="50%"><iframe height=100%  width=100% src="video1.php" frameborder="0" style="border:0" name="sf"></iframe></td>
+
+        <tr>
+            <td width=40%  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                一&二綠燈  {{ $direct_12_sec_default }} 秒</td>
+            <td width=60% align="center" >{{ $direct_12_sec }}</td>
         </tr>
-    </table>-->
+
+        <tr style="background-color: white">
+            <td width=40% >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                三&四綠燈   {{ $direct_34_sec_default }} 秒</td>
+            <td width=60% align="center">{{ $direct_34_sec }}</td>
+        </tr>
+
+        <tr >
+            <td colspan="2" width=40% align="center" style="background-color:#FFB35A"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <b>車輛數</b></td>
+
+        </tr>
+
+        <tr style="background-color: white">
+            <td width=40% >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                一／三鏡頭車輛數</td>
+            <td width=60% align="center">3</td>
+        </tr>
+
+        <tr style="background-color: white">
+            <td width=40% >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                二／四鏡頭車輛數</td>
+            <td width=60% align="center">4</td>
+        </tr>
+
+    </table>
 
 
 
-    <img src="images/block.png" width="20%" >
-
-    <div align="center">
-    <div class="tab" style="width: 70%;">
-        <button class="tablinks" onclick="openCity(event, '一＆二鏡頭')" id="defaultOpen">London</button>
-        <button class="tablinks" onclick="openCity(event, '三＆四鏡頭')">Paris</button>
+    <div align="center" style="margin-top: 3%">
+    <div class="tab" style="width: 80%;" >
+        <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen"><font size="3" color="black">&nbsp;一＆二鏡頭&nbsp;</font></button>
+        <button class="tablinks" onclick="openCity(event, 'Paris')"><font size="3" color="black">&nbsp;三＆四鏡頭&nbsp;</font></button>
     </div>
 
     <!-- Tab content -->
-    <div id="London" class="tabcontent" style="width: 70%;">
-        <h3>London</h3>
-        <p>London is the capital city of England.</p>
+    <div id="London" class="tabcontent" style="width: 80%;">
+        <iframe width="700" height="500" src="http://192.168.50.206:8081/index.html" frameborder="0" allowfullscreen></iframe>
+        <iframe width="700" height="500" src="http://192.168.50.206:8081/index.html" frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <div id="Paris" class="tabcontent" style="width: 70%;">
-        <h3>Paris</h3>
-        <p>Paris is the capital of France.</p>
+    <div id="Paris" class="tabcontent" style="width: 80%;">
+        <iframe width="700" height="500" src="http://192.168.50.206:8081/index.html" frameborder="0" allowfullscreen></iframe>
+        <iframe width="700" height="500" src="http://192.168.50.206:8081/index.html" frameborder="0" allowfullscreen></iframe>
     </div>
     </div>
 

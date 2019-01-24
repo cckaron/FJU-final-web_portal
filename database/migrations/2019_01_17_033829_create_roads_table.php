@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArduinosTable extends Migration
+class CreateRoadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateArduinosTable extends Migration
      */
     public function up()
     {
-        Schema::create('arduinos', function (Blueprint $table) {
+        Schema::create('roads', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('light1')->nullable();
-            $table->integer('light2')->nullable();
-            $table->integer('light3')->nullable();
-            $table->integer('light4')->nullable();
+            $table->string('address');
             $table->timestamps();
+
+            $table->index('id');
         });
     }
 

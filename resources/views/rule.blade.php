@@ -19,8 +19,8 @@
     table{background:white;border-collapse:collapse;width:80%;position: relative;left: 10%;}
     table tr,table th,table td{border:none;border-bottom:0px solid #e4ebeb;font-family:'Lato',sans-serif;font-size:1.5rem}
     table th,table td{padding:10px 12px;text-align:left}
-    table th{background:#FF8888;color:#ffffff;text-transform:uppercase}
-    table tr td{background:#FFC8B4;color:#000000}
+    table th{background:#FF8300;color:#ffffff;text-transform:uppercase}
+    table tr td{background:#FFCC8C;color:#000000}
     table tr:nth-of-type(2n+2) td{background:#ffffff}
     table.bt tfoot th,table.bt tfoot td,table.bt tbody td{font-size:.8125rem;padding:0}
     table.bt tfoot th:before,table.bt tfoot td:before,table.bt tbody td:before{background:#56a2cf;color:white;margin-right:10px;padding:2px 10px}
@@ -55,7 +55,7 @@
         <img src="images/block.png" width="70%" height="70%">
     </div>
     <div>
-        <h2>規則介紹</h2>
+        <h2><b><font color="FF8300">規則介紹 </font></b></h2>
         <p align="left" style="font-size: 20px">當路口紅綠燈為紅燈時，鏡頭將會辨識同條馬路停止的車輛數並將兩鏡頭數據相加，
             相加總數來給函式判斷是否應該調整該馬路轉換成綠燈時的秒數。<br>
             每次紅燈判斷後將可能更動其綠燈秒數，其綠燈秒數為預設值且每次判斷完將會歸回預設值。<br>

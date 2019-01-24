@@ -16,10 +16,8 @@
 
 <!-- Header -->
 <header id="header">
-    <a class="logo" href="/">Eye of Intelligence 開天眼</a>
-    <!--<div align="left">
-        <img src="images/logo.jpg" height="30%" width="5%" align="left">
-    </div>-->
+    <a class="logo" href="/"><font color="FF8300">Eye of Intelligence 開天眼</font> </a>
+
     <nav>
         <a href="#menu">Menu</a>
     </nav>
@@ -56,13 +54,13 @@
             <section style="width: 80%;">
                 <h3>聯絡資訊</h3>
                 <ul class="alt">
-                    <li><b><font color="#FF0000">凱哥</font></b> &nbsp;高俊凱 &nbsp;&nbsp;&nbsp;手機：0981429828 &nbsp;&nbsp;&nbsp;信箱：405402091@gapp.fju.edu.tw</li>
-                    <li><b><font color="#FF0000">蝴蝶</font></b> &nbsp;何俞樺 &nbsp;&nbsp;&nbsp;手機：0975762822 &nbsp;&nbsp;&nbsp;信箱：a0910020888@gmail.com</li>
-                    <li><b><font color="#FF0000">助教</font></b> &nbsp;陳建軒 &nbsp;&nbsp;&nbsp;手機：0909982918 &nbsp;&nbsp;&nbsp;信箱：b02180202@gmail.com</li>
-                    <li><b><font color="#FF0000">蔡媽</font></b> &nbsp;蔡依庭 &nbsp;&nbsp;&nbsp;手機：0909982859 &nbsp;&nbsp;&nbsp;信箱：tina604201510128@gmail.com</li>
-                    <li><b><font color="#FF0000">Bobo</font></b> &nbsp;黃柏勳 &nbsp;&nbsp;&nbsp;手機：0905350342 &nbsp;&nbsp;&nbsp;信箱：nbx7777@gmail.com</li>
-                    <li><b><font color="#FF0000">金魚</font></b> &nbsp;張沛心 &nbsp;&nbsp;&nbsp;手機：0937216113 &nbsp;&nbsp;&nbsp;信箱：sandy230207@gmail.com</li>
-                    <li><b><font color="#FF0000">帥哥</font></b> &nbsp;郭鎮源 &nbsp;&nbsp;&nbsp;手機：0988955511 &nbsp;&nbsp;&nbsp;信箱：asdf024681029@gmail.com</li>
+                    <li><b><font color="#FF8300">凱哥</font></b> &nbsp;高俊凱 &nbsp;&nbsp;&nbsp;手機：0981-429-828 &nbsp;&nbsp;&nbsp;信箱：405402091@gapp.fju.edu.tw</li>
+                    <li><b><font color="#FF8300">蝴蝶</font></b> &nbsp;何俞樺 &nbsp;&nbsp;&nbsp;手機：0975-762-822 &nbsp;&nbsp;&nbsp;信箱：a0910020888@gmail.com</li>
+                    <li><b><font color="#FF8300">助教</font></b> &nbsp;陳建軒 &nbsp;&nbsp;&nbsp;手機：0909-982-918 &nbsp;&nbsp;&nbsp;信箱：b02180202@gmail.com</li>
+                    <li><b><font color="#FF8300">蔡媽</font></b> &nbsp;蔡依庭 &nbsp;&nbsp;&nbsp;手機：0909-982-859 &nbsp;&nbsp;&nbsp;信箱：tina604201510128@gmail.com</li>
+                    <li><b><font color="#FF8300">Bobo</font></b> &nbsp;黃柏勳 &nbsp;&nbsp;&nbsp;手機：0905-350-342 &nbsp;&nbsp;&nbsp;信箱：nbx7777@gmail.com</li>
+                    <li><b><font color="#FF8300">金魚</font></b> &nbsp;張沛心 &nbsp;&nbsp;&nbsp;手機：0937-216-113 &nbsp;&nbsp;&nbsp;信箱：sandy230207@gmail.com</li>
+                    <li><b><font color="#FF8300">帥哥</font></b> &nbsp;郭鎮源 &nbsp;&nbsp;&nbsp;手機：0988-955-511 &nbsp;&nbsp;&nbsp;信箱：asdf024681029@gmail.com</li>
                 </ul>
             </section>
 

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <h2><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;研究成員</b></h2>
+    <h2><b><font color="FF8300"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;研究成員</font></b></h2>
     <!doctype html>
     <html>
     <head>
@@ -29,21 +29,21 @@
                 <th><img align="middle" src="images/246605.jpg" height="250"></th>
                 <th><img align="middle" src="images/chen.jpg" height="250"></th>
             </tr>
-            <tr style="background-color:#ADD8E6;">
-                <td align="middle">黃柏勳<br>MR. BOBO</td>
-                <td align="middle">蔡媽<br>Tina TSAI</td>
-                <td align="middle">凱哥<br>Professor Kai</td>
-                <td align="middle">蝴蝶<br>Debuger Butterfly</td>
-                <td align="middle">建軒<br>Teaching Assistant Chen</td>
+            <tr style="background-color:#FF8300;">
+                <td align="middle"><b>柏勳</b>   <br><b>MR. BOBO</b></td>
+                <td align="middle"><b>蔡媽</b>    <br><b>Tina TSAI</b></td>
+                <td align="middle"><b>凱哥</b>    <br><b>Professor Kai</b></td>
+                <td align="middle"><b>蝴蝶</b>    <br><b>Debuger Butterfly</b></td>
+                <td align="middle"><b>建軒</b>    <br><b>Teaching Assistant Chen</b></td>
             </tr>
-            <tr style="background-color: #F0F8FF;">
+            <tr style="background-color: #FFCC8C;">
                 <td align="middle">只會抬摃，寒假回家</td>
                 <td align="middle">食衣住行，Costco衝鋒隊長</td>
                 <td align="middle">各項技術指導，全方位輔助<br>虛心授教</td>
                 <td align="middle">沒有什麼Bug是處理不了的<br>處理不了找凱哥<br></td>
                 <td align="middle">不寫程式，我睡不著</td>
             </tr>
-            <tr style="background-color: #F0F8FF;">
+            <tr style="background-color: #FFCC8C;">
                 <td align="middle">座右銘：I can accept failure,<br>but I can't accept giving up.</td>
                 <td align="middle">座右銘：吃是生命</td>
                 <td align="middle">座右銘：越吃越餓</td>
