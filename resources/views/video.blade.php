@@ -46,42 +46,46 @@
 
 @section('content')
 
-    <table  style="width: 70%;margin-left: 15%;" border="5">
+    <table  style="width: 70%;margin-left: 15%;border-style: none">
 
-        <tr style="background-color:white">
-            <td rowspan="6" width="40%"><img src="images/block.png" width="90%" style="margin-left: 10%;margin-top: 7%"></td>
-            <td colspan="2" width=60% align="center" style="background-color:#FFB35A" ><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原本秒數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    偵測更改秒數</b></td>
+        <tr style="background-color:white;border-style: none">
+            <td rowspan="6" width="40%" ><img src="images/block.png"></td>
+            <td style="background-color:#FFB35A" >&nbsp</td>
+            <td align="center" style="background-color:#FFB35A" ><b>原本秒數</b> </td>
+            <td align="center" style="background-color:#FFB35A"><b>扣掉秒數</b></td>
+            <td align="center" style="background-color:#FFB35A"><b>更改後秒數</b></td>
+            <td align="center" style="background-color:#FFB35A"><b>正在倒數秒數</b></td>
         </tr>
-
-        <tr>
-            <td width=40%  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                一&二綠燈  {{ $direct_12_sec_default }} 秒</td>
-            <td width=60% align="center" >{{ $direct_12_sec }}</td>
-        </tr>
-
-        <tr style="background-color: white">
-            <td width=40% >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                三&四綠燈   {{ $direct_34_sec_default }} 秒</td>
-            <td width=60% align="center">{{ $direct_34_sec }}</td>
-        </tr>
-
         <tr >
-            <td colspan="2" width=40% align="center" style="background-color:#FFB35A"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <b>車輛數</b></td>
+            <td align="center">一&二綠燈</td>
+            <td align="center">{{ $direct_12_sec_default }} 秒</td>
+            <td align="center">{{ $direct_12_sec_default }} 秒</td>
+            <td align="center">{{ $direct_12_sec_default }} 秒</td>
+            <td align="center">{{ $direct_12_sec_default }} 秒</td>
+        </tr>
+        <tr style="background-color:white">
+            <td align="center">三&四綠燈</td>
+            <td align="center">{{ $direct_12_sec_default }} 秒</td>
+            <td align="center">{{ $direct_12_sec_default }} 秒</td>
+            <td align="center">{{ $direct_12_sec_default }} 秒</td>
+            <td align="center">{{ $direct_12_sec_default }} 秒</td>
+        </tr>
+        <tr ><!--<td style="background-color:#FFB35A">&nbsp</td>-->
+            <td colspan="5" align="center" style="background-color:#FFB35A;" ><b>車輛數</b></td>
+        </tr>
+
+        <tr style="background-color: white;">
+            <td align="center">一／三鏡頭車輛數</td>
+            <td colspan="4" align="right" style="padding-right: 80px" >
+                <b>12</b></td>
 
         </tr>
 
         <tr style="background-color: white">
-            <td width=40% >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                一／三鏡頭車輛數</td>
-            <td width=60% align="center">3</td>
-        </tr>
+            <td align="center">二／四鏡頭車輛數</td>
+            <td colspan="4" align="right"style="padding-right: 80px" >
+                <b>12</b></td>
 
-        <tr style="background-color: white">
-            <td width=40% >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                二／四鏡頭車輛數</td>
-            <td width=60% align="center">4</td>
         </tr>
 
     </table>

@@ -29,8 +29,8 @@
                 <th><img align="middle" src="images/246605.jpg" height="250"></th>
                 <th><img align="middle" src="images/chen.jpg" height="250"></th>
             </tr>
-            <tr style="background-color:#FF8300;">
-                <td align="middle"><b>柏勳</b>   <br><b>MR. BOBO</b></td>
+            <tr style="background-color:#FFB35A; border-bottom: solid">
+                <td align="middle"><b>柏勳</b>    <br><b>MR. BOBO</b></td>
                 <td align="middle"><b>蔡媽</b>    <br><b>Tina TSAI</b></td>
                 <td align="middle"><b>凱哥</b>    <br><b>Professor Kai</b></td>
                 <td align="middle"><b>蝴蝶</b>    <br><b>Debuger Butterfly</b></td>
