@@ -35,7 +35,7 @@
 <section id="banner">
     <div class="inner">
         <div class="inner">
-            <img src="images/logo.jpg" height="25%" width="25%" align="right" style="opacity:0.5">
+            <img src="{{ URL::to('images/logo.jpg') }}" height="25%" width="25%" align="right" style="opacity:0.5">
         <h1>Eye of Intelligence</h1><br>
 
         <h1>開天眼</h1>
@@ -43,7 +43,7 @@
 
     </div>
 
-    <video autoplay loop muted playsinline src="images/car.mp4"></video>
+    <video autoplay loop muted playsinline src="{{ URL::to('images/car.mp4') }}"></video>
 </section>
 <div class="container" style="padding-bottom: 50px;padding-top: 75px">
     @yield('content')
