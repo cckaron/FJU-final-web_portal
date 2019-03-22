@@ -18,7 +18,6 @@ class CreateLightsTable extends Migration
             $table->integer('roads_id')->unsigned();
             $table->integer('default_sec')->nullable();
             $table->integer('now_sec')->nullable();
-            $table->integer('varia_sec')->nullable();
             $table->integer('default_max_car')->default(5);
             $table->integer('now_car')->default(0);
             $table->integer('now_direct')->default(1);

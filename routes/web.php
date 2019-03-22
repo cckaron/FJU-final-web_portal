@@ -31,7 +31,7 @@ Route::get('/Member', [
     'as' => 'main.member'
 ]);
 
-Route::get('/arduino/{now_sec}/{now_direct}/{variaSec_direct1}/{variaSec_direct2}', [
+Route::get('/arduino/{now_sec}/{now_direct}', [
    'uses' => 'ArduinoController@getWriteSeconds',
    'as' => 'arduino.writeSeconds'
 ]);
