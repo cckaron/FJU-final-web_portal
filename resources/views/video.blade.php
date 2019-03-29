@@ -100,13 +100,13 @@
 
     <!-- Tab content -->
     <div id="London" class="tabcontent" style="width: 80%;">
-        <iframe width="700" height="500" src="http://192.168.50.206:8081/index.html" frameborder="0" allowfullscreen></iframe>
-        <iframe width="700" height="500" src="http://192.168.50.206:8081/index.html" frameborder="0" allowfullscreen></iframe>
+        <iframe width="700" height="500" src="http://192.168.50.172:5000/stream" frameborder="0" allowfullscreen></iframe>
+        <iframe width="700" height="500" src="http://192.168.50.172:5001/stream" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <div id="Paris" class="tabcontent" style="width: 80%;">
-        <iframe width="700" height="500" src="http://192.168.50.206:8081/index.html" frameborder="0" allowfullscreen></iframe>
-        <iframe width="700" height="500" src="http://192.168.50.206:8081/index.html" frameborder="0" allowfullscreen></iframe>
+        <iframe width="700" height="500" src="http://192.168.50.206:5002/stream" frameborder="0" allowfullscreen></iframe>
+        <iframe width="700" height="500" src="http://192.168.50.206:5003/stream" frameborder="0" allowfullscreen></iframe>
     </div>
     </div>
 
