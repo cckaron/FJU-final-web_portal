@@ -56,7 +56,7 @@
             <td align="center" style="background-color:#FFB35A"><b>更改後秒數</b></td>
             <td align="center" style="background-color:#FFB35A"><b>正在倒數秒數</b></td>
         </tr>
-        <tr >
+        <tr style="background-color:white">
             <td align="center">一&二綠燈</td>
             <td align="center">{{ $direct_12_sec_default }} 秒</td>
             <td align="center">{{ $direct_12_sec_default }} 秒</td>

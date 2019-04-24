@@ -40,4 +40,8 @@ class MainController extends Controller
     public function getMember(){
         return view('member');
     }
+
+    public function getMakeRule(){
+        return view('makeRule');
+    }
 }

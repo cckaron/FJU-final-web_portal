@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
 
@@ -8,15 +8,13 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="{{ URL::to('assets/css/main.css') }}" />
-    <script @yield('script')></script>
     <style>@yield('style')</style>
-    <script @yield('script1')></script>
 </head>
 <body class="is-preload">
 
 <!-- Header -->
 <header id="header">
-    <a class="logo" href="/"><font color="FF8300">Eye of Intelligence 開天眼</font> </a>
+    <a class="logo" href="/"><font color="FF8300">OVERLOOK &nbsp;&nbsp;堅守治道</font> </a>
 
     <nav>
         <a href="#menu">Menu</a>
@@ -36,9 +34,8 @@
     <div class="inner">
         <div class="inner">
             <img src="{{ URL::to('images/logo.jpg') }}" height="25%" width="25%" align="right" style="opacity:0.5">
-        <h1>Eye of Intelligence</h1><br>
-
-        <h1>開天眼</h1>
+        <h1>Overlook</h1><b r>
+        <h1>監守治道</h1>
         </div>
 
     </div>
@@ -48,6 +45,7 @@
 <div class="container" style="padding-bottom: 50px;padding-top: 75px">
     @yield('content')
 </div>
+@yield('content2')
 <footer id="footer" style="padding:0 0 0 0;">
    <div class="inner" style="padding-top: 1%">
         <div class="content" style="width: 100%;">
@@ -71,10 +69,14 @@
     </div>
 </footer>
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+
+<script src="{{ URL::to('assets/js/jquery.min.js') }}"></script>
+<script src="{{ URL::to('assets/js/browser.min.js') }}"></script>
+<script src="{{ URL::to('assets/js/breakpoints.min.js') }}"></script>
+<script src="{{ URL::to('assets/js/util.js') }}"></script>
+<script src="{{ URL::to('assets/js/main.js') }}"></script>
+<script @yield('script')></script>
+<script @yield('script1')></script>
+
 </body>
 </html>

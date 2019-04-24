@@ -11,6 +11,9 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Auth::routes();
 
 Route::get('/', [
@@ -31,7 +34,14 @@ Route::get('/Member', [
     'as' => 'main.member'
 ]);
 
+Route::get('/makerule', [
+    'uses' => 'MainController@getMakeRule',
+    'as' => 'main.makeRule'
+]);
+
+
 Route::get('/arduino/{now_sec}/{now_direct}', [
    'uses' => 'ArduinoController@getWriteSeconds',
    'as' => 'arduino.writeSeconds'
 ]);
+
