@@ -150,7 +150,7 @@
 
 @section('script')
     {{--src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'.--}}
-    <script src="{{ URL::to('bootstrap-4.3.1-dist/js/bootstrap.min.js') }}"></script>
+    src="{{ URL::to('bootstrap-4.3.1-dist/js/bootstrap.min.js') }}">
 
 @endsection
 

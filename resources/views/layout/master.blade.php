@@ -34,7 +34,7 @@
     <div class="inner">
         <div class="inner">
             <img src="{{ URL::to('images/logo.jpg') }}" height="25%" width="25%" align="right" style="opacity:0.5">
-        <h1>Overlook</h1><b r>
+        <h1>Overlook</h1><br>
         <h1>監守治道</h1>
         </div>
 
@@ -76,7 +76,6 @@
 <script src="{{ URL::to('assets/js/util.js') }}"></script>
 <script src="{{ URL::to('assets/js/main.js') }}"></script>
 <script @yield('script')></script>
-<script @yield('script1')></script>
-
+@yield('script1')
 </body>
 </html>
