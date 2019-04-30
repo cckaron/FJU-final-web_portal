@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ URL::to('bootstrap-4.3.1-dist/css/bootstrap.min.css') }}" />
 
     /*jQuery Basic Table, Author: Jerry Low*/
-    table{background:white;border-collapse:collapse;width:80%;position: relative;left: 10%;}
+    {{--table{background:white;border-collapse:collapse;width:80%;position: relative;left: 10%;}
     table tr,table th,table td{border:none;border-bottom:0px solid #e4ebeb;font-family:'Lato',sans-serif;font-size:1.5rem}
     table th,table td{padding:10px 12px;text-align:left}
     table th{background:#FF8300;color:#ffffff;text-transform:uppercase}
@@ -23,9 +23,11 @@
     table.bt tfoot th,table.bt tfoot td,table.bt tbody td{border:none;display:block;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;vertical-align:top;float:left\9;width:100%\9}
     table.bt tfoot th::before,table.bt tfoot td::before,table.bt tbody td::before{content:attr(data-th) ":";display:inline-block;-webkit-flex-shrink:0;-ms-flex-shrink:0;flex-shrink:0;font-weight:bold;width:6.5em}
     table.bt tfoot th.bt-hide,table.bt tfoot td.bt-hide,table.bt tbody td.bt-hide{display:none}
-    table.bt tfoot th .bt-content,table.bt tfoot td .bt-content,table.bt tbody td .bt-content{vertical-align:top}
-    .bt-wrapper.active{max-height:310px;overflow:auto;-webkit-overflow-scrolling:touch}
-    .ccle {
+    table.bt tfoot th .bt-content,table.bt tfoot td .bt-content,table.bt tbody td .bt-content{vertical-align:top}--}}
+
+    {{--.bt-wrapper.active{max-height:310px;overflow:auto;-webkit-overflow-scrolling:touch}--}}
+
+    {{--.ccle {
     margin: 0px auto;/*div對齊效果*/
     text-align: center;/*display: inline對齊效果*/
     }
@@ -36,18 +38,45 @@
     width: 700px;
     height: 100%;
     border-radius:3px;
+    }--}}
 
+    .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
     }
+    .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+    * {
+    outline: none;
+    }
+    *, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    }
+    user agent stylesheet
+    div {
+    display: block;
+    }
+
+
 
 @endsection
 
 @section('content')
 
-    <div class="ccle">
+    {{--<div class="ccle">
         <div style="margin-top: 10px">
         <img src="images/block.png" width="70%" height="70%">
-            <!-- TODO 改照片-->
-    </div>
+
+    </div>--}}{{--
     <div>
         <h2>
             <b><font color="FF8300">規則介紹</font></b>
@@ -65,20 +94,22 @@
             此時， 程式判斷就會進入↑/↓情境，將會把此時紅綠燈秒數－(當下秒數＊1/2)秒{60-30=30秒}為偵測更改後的秒數。
         </p>
         </div>
-    </div>
-    <table id="RWD">
-        <thead>
-        <tr>
-            <th>情境<br>
-            紅／綠燈道車輛多寡
-            </th>
-            <th>紅燈車輛數</th>
-            <th>綠燈車輛數</th>
-            <th>偵測後更改秒數</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
+    </div>--}}
+    {{--<div align="center">
+        <div class="table-responsive" style="width:90%">
+            <table class="table">
+                <thead class="thead-light" >
+                <tr style="background:#FF8300;">
+                    <th>情境<br>
+                    紅／綠燈道車輛多寡
+                    </th>
+                    <th>紅燈車輛數</th>
+                    <th>綠燈車輛數</th>
+                    <th>偵測後更改秒數</th>
+                </tr>
+                 </thead>
+        <tbody class="customtable">
+        <tr style="background:#FFCC8C;">
             <td>↑/↑<br>
                 <hr>
                 ＝/＝
@@ -100,7 +131,7 @@
             <td>汽>=12輛or機>=15輛</td>
             <td>秒數延長＋1/2秒</td>
         </tr>
-        <tr>
+        <tr style="background:#FFCC8C;">
             <td>＝/↑<br>
                 <hr>
                 ↓/＝
@@ -146,12 +177,107 @@
         </tr>
         </tbody>
     </table>
+        </div>
+    </div>--}}
+    <div align="center">
+        <div class="table-responsive" style="width: 90%;">
+            <table style="font-size: 25px;width: 80%" class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th><img src="{{ URL::to('images/Sparkle-Transparent-Image.png') }}" style="width: 250px;height: 1px;"></th>
+                    <th><img src="{{ URL::to('images/Sparkle-Transparent-Image.png') }}" style="width: 250px;height: 1px"></th>
+                    <th><img src="{{ URL::to('images/Sparkle-Transparent-Image.png') }}" style="width: 250px;height: 1px"></th>
+                    <th><img src="{{ URL::to('images/Sparkle-Transparent-Image.png') }}" style="width: 250px;height: 1px"></th>
+                </tr>
+                </thead>
+                <tbody class="customtable">
+                <tr style="background:#FF8300;">
+                    <td>情境<br>
+                        紅／綠燈道車輛多寡
+                    </td>
+                    <td>紅燈車輛數</td>
+                    <td>綠燈車輛數</td>
+                    <td>偵測後更改秒數</td>
+                </tr>
+                <tr style="background:#FFCC8C;">
+                    <td>↑/↑<br>
+                        <hr>
+                        ＝/＝
+                    </td>
+                    <td>汽>=12輛or機>=15輛<br>
+                        <hr>
+                        6<汽<12輛or 5<機<15輛
+                    </td>
+                    <td>汽>=12輛or機>=15輛<br>
+                        <hr>
+                        6<汽<12輛or 5<機<15輛
+                    </td>
+                    <td>秒數不變</td>
+                </tr>
+                <tr style="background-color: white">
+                    <td>↓/↑
+                    </td>
+                    <td>汽<=6輛or機<=5輛</td>
+                    <td>汽>=12輛or機>=15輛</td>
+                    <td>秒數延長＋1/2秒</td>
+                </tr>
+                <tr style="background:#FFCC8C;">
+                    <td>＝/↑<br>
+                        <hr>
+                        ↓/＝
+                    </td>
+                    <td>6<汽<12輛or 5<機<15輛<br>
+                        <hr>
+                        汽<=6輛or機<=5輛
+                    </td>
+                    <td>汽>=12輛or機>=15輛<br>
+                        <hr>
+                        6<汽<12輛or 5<機<15輛
+                    </td>
+                    <td>秒數延長＋1/4秒</td>
+                </tr>
+                <tr style="background-color: white">
+                    <td>↑/↓
+                    </td>
+                    <td>汽>=12輛or機>=15輛</td>
+                    <td>汽<=6輛or機<=5輛</td>
+                    <td>秒數減少－1/2秒</td>
+                </tr>
+                <tr style="background:#FFCC8C;">
+                    <td>↑/＝<br>
+                        <hr>
+                        ＝/↓
+                    </td>
+                    <td>汽>=12輛or機>=15輛<br>
+                        <hr>
+                        6<汽<12輛or 5<機<15輛
+                    </td>
+                    <td>6<汽<12輛or 5<機<15輛<br>
+                        <hr>
+                        汽<=6輛or機<=5輛
+                    </td>
+                    <td>秒數減少－1/4秒</td>
+                </tr>
+                <tr style="background-color: white">
+                    <td>↓/↓
+                    </td>
+                    <td>汽<=6輛or機<=5輛</td>
+                    <td>汽<=6輛or機<=5輛</td>
+                    <td>秒數設定成10秒</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+
 @endsection
 
 @section('script')
     {{--src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'.--}}
-    src="{{ URL::to('bootstrap-4.3.1-dist/js/bootstrap.min.js') }}">
-
+   {{-- src="{{ URL::to('bootstrap-4.3.1-dist/js/bootstrap.min.js') }}">
+--}}
 @endsection
 
 {{--@section('script1')--}}
