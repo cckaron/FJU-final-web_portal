@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('title')
-    首頁
+    主控台
 @endsection
 
 @section('script')
@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    <table >
+    {{--<table >
         <tr style="border-top:none;border-bottom: outset;border-bottom-width: 2px;border-bottom-color:seashell;">
             <td colspan="2"><img src="{{ URL::to('images/picture.jpeg') }}"></td>
         </tr>
@@ -39,7 +39,6 @@
                 </p>
             </td>
         </tr>
-    </table>
-
-
+    </table>--}}
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.935746114909!2d121.43050381536588!3d25.03625453397131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a7dd8be91eaf%3A0xe342a67d6574f896!2z5aSp5Li75pWZ6LyU5LuB5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1556718929015!5m2!1szh-TW!2stw" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 @endsection

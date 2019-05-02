@@ -22,7 +22,7 @@
 </header>
 <nav id="menu">
     <ul class="links">
-        <li><a href="{{ route('main.index') }}">首頁</a></li>
+        <li><a href="{{ route('main.index') }}">主控台</a></li>
         <li><a href="{{ route('main.rule') }}">規則介紹</a></li>
         <li><a href="{{ route('main.video') }}">即時影片</a></li>
         <li><a href="{{ route('main.member') }}">研究成員</a></li>
