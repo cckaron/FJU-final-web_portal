@@ -2,47 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ArduinoController extends Controller
 {
-    public function getWriteSeconds($now_sec, $nowdirect){
+    public function getCurrentInfo($now_sec, $now_direct){
+        if ($now_direct == 1){
+            $this->setLight(1, 'red', $now_sec);
+            $this->setLight(2, 'red', $now_sec);
+            $this->setLight(3, 'green', $now_sec);
+            $this->setLight(4, 'green', $now_sec);
+        } else {
+            $this->setLight(1, 'green', $now_sec);
+            $this->setLight(2, 'green', $now_sec);
+            $this->setLight(3, 'red', $now_sec);
+            $this->setLight(4, 'red', $now_sec);
+        }
+    }
+
+    private function setLight($id, $color, $second){
         DB::table('Lights')
-            ->where('id', 1)
+            ->where('id', $id)
             ->update([
-                'now_sec' => $now_sec-1,
-                'now_direct' => $nowdirect,
+                'now_color' => $color,
+                'now_second' => $second,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
-
-        DB::table('Lights')
-            ->where('id', 2)
-            ->update([
-                'now_sec' => $now_sec-1,
-                'now_direct' => $nowdirect,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
-
-        DB::table('Lights')
-            ->where('id', 3)
-            ->update([
-                'now_sec' => $now_sec-1,
-                'now_direct' => $nowdirect,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
-
-        DB::table('Lights')
-            ->where('id', 4)
-            ->update([
-                'now_sec' => $now_sec-1,
-                'now_direct' => $nowdirect,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);    }
+    }
 
 }

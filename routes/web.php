@@ -41,7 +41,7 @@ Route::get('/makerule', [
 
 
 Route::get('/arduino/{now_sec}/{now_direct}', [
-   'uses' => 'ArduinoController@getWriteSeconds',
-   'as' => 'arduino.writeSeconds'
+   'uses' => 'ArduinoController@getCurrentInfo',
+   'as' => 'arduino.currentInfo'
 ]);
 
