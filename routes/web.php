@@ -24,6 +24,10 @@ Route::get('/Rule', [
     'uses' => 'MainController@getRule',
     'as' => 'main.rule'
 ]);
+Route::get('/Rule2', [
+    'uses' => 'MainController@getRule2',
+    'as' => 'main.rule2'
+]);
 Route::get('/Video', [
     'uses' => 'MainController@getVideo',
     'as' => 'main.video'
@@ -40,8 +44,13 @@ Route::get('/makerule', [
 ]);
 
 
-Route::get('/arduino/{now_sec}/{now_direct}', [
+Route::get('/arduino/{now_direct}/{now_sec}', [
    'uses' => 'ArduinoController@getCurrentInfo',
    'as' => 'arduino.currentInfo'
+]);
+
+Route::get('/judgeRule/{road1_id}/{road2_id}/{road1_car_count}/{road2_car_count}', [
+   'uses' => 'RuleController@judgeRule',
+   'as' => 'rule.judge'
 ]);
 

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class ArduinoController extends Controller
 {
-    public function getCurrentInfo($now_sec, $now_direct){
+    public function getCurrentInfo($now_direct, $now_sec){
         if ($now_direct == 1){
             $this->setLight(1, 'red', $now_sec);
             $this->setLight(2, 'red', $now_sec);

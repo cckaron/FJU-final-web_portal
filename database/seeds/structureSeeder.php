@@ -67,7 +67,7 @@ class structureSeeder extends Seeder
         //rule
         DB::table('rules')->insert([
             'intersections_id' => 1,
-            'name' => '紅燈車多 and 綠燈車多',
+            'name' => '↑/↑',
             'operator' => '+',
             'second' => 0,
             'created_at' => Carbon::now(),
@@ -76,7 +76,7 @@ class structureSeeder extends Seeder
 
         DB::table('rules')->insert([
             'intersections_id' => 1,
-            'name' => '紅燈車一般 and 綠燈車一般',
+            'name' => '＝/＝',
             'operator' => '+',
             'second' => 0,
             'created_at' => Carbon::now(),
@@ -85,7 +85,7 @@ class structureSeeder extends Seeder
 
         DB::table('rules')->insert([
             'intersections_id' => 1,
-            'name' => '紅燈車少 and 綠燈車少',
+            'name' => '↓/↓',
             'operator' => '=',
             'second' => 10,
             'created_at' => Carbon::now(),
@@ -94,7 +94,7 @@ class structureSeeder extends Seeder
 
         DB::table('rules')->insert([
             'intersections_id' => 1,
-            'name' => '紅燈車少 and 綠燈車多',
+            'name' => '↓/↑',
             'operator' => '*',
             'second' => 0.5,
             'created_at' => Carbon::now(),
@@ -103,7 +103,7 @@ class structureSeeder extends Seeder
 
         DB::table('rules')->insert([
             'intersections_id' => 1,
-            'name' => '紅燈車一般 and 綠燈車多',
+            'name' => '＝/↑',
             'operator' => '*',
             'second' => 1.25,
             'created_at' => Carbon::now(),
@@ -112,7 +112,7 @@ class structureSeeder extends Seeder
 
         DB::table('rules')->insert([
             'intersections_id' => 1,
-            'name' => '紅燈車少 and 綠燈車一般',
+            'name' => '↓/＝',
             'operator' => '*',
             'second' => 1.25,
             'created_at' => Carbon::now(),
@@ -121,7 +121,7 @@ class structureSeeder extends Seeder
 
         DB::table('rules')->insert([
             'intersections_id' => 1,
-            'name' => '紅燈車多 and 綠燈車少',
+            'name' => '↑/↓',
             'operator' => '*',
             'second' => 0.5,
             'created_at' => Carbon::now(),
@@ -130,7 +130,7 @@ class structureSeeder extends Seeder
 
         DB::table('rules')->insert([
             'intersections_id' => 1,
-            'name' => '紅燈車多 and 綠燈車一般',
+            'name' => '↑/＝',
             'operator' => '*',
             'second' => 0.75,
             'created_at' => Carbon::now(),
@@ -139,7 +139,7 @@ class structureSeeder extends Seeder
 
         DB::table('rules')->insert([
             'intersections_id' => 1,
-            'name' => '紅燈車一般 and 綠燈車少',
+            'name' => '＝/↓',
             'operator' => '*',
             'second' => 0.75,
             'created_at' => Carbon::now(),
@@ -209,7 +209,7 @@ class structureSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
-        DB::table('conditions')->insert([
+        /*DB::table('conditions')->insert([
             'rules_id' => 2,
             'name' => '綠燈',
             'color' => 'green',
@@ -217,7 +217,7 @@ class structureSeeder extends Seeder
             'car_count' => 6,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-        ]);
+        ]);*/
 
         //rule 3
         DB::table('conditions')->insert([

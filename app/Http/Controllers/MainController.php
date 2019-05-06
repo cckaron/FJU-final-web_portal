@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,8 +12,20 @@ class MainController extends Controller
         return view('index');
     }
     public function getRule(){
-        return view('rule');
+        $rules = Rule::with('condition')->get();
+
+        return view('rule', [
+            'rules' => $rules
+        ]);
     }
+
+    public function getRule2(){
+        $rules = Rule::with('condition')->get();
+        return view('rule2', [
+            'rules' => $rules
+        ]);
+    }
+
     public function getVideo(){
         $direct_12_sec = DB::table('lights')
             ->where('id', 1)

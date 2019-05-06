@@ -35,7 +35,7 @@ class CreateBasicStructure extends Migration
             $table->integer('roads_id')->unsigned()->nullable();
             $table->string('name')->nullable();
             $table->integer('now_second')->nullable();
-            $table->integer('now_color')->nullable();
+            $table->string('now_color')->nullable();
             $table->integer('now_car_count')->nullable();
             $table->timestamps();
         });

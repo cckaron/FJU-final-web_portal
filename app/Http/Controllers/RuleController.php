@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Road;
 use App\Rule;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class RuleController extends Controller
 {
@@ -31,7 +33,7 @@ class RuleController extends Controller
         $ans = null;
         foreach($rules as $rule){
             //取得規則的所有條件
-            $conditions = $rule->condition();
+            $conditions = $rule->condition()->get();
 
             //所有條件都成立
             if ($this->checkRuleConfirm($conditions, $red_car_count, $green_car_count)){
@@ -40,7 +42,33 @@ class RuleController extends Controller
             }
         }
 
-        return $ans;
+        $url = 'http://192.168.50.126/change?operand=';
+
+        switch ($ans->operator){
+            case "+":
+                $url .= "1";
+                break;
+            case "-":
+                $url .= "2";
+                break;
+            case "*":
+                $url .= "3";
+                break;
+            case "/":
+                $url .= "4";
+                break;
+        }
+
+        $url .= "&second=".$ans->second;
+
+        $client = new \GuzzleHttp\Client();
+        try {
+            $res = $client->request('GET', $url);
+        } catch (GuzzleException $e) {
+            Log::info($e);
+        }
+
+        return $ans->id;
     }
 
     private function checkRuleConfirm($conditions, $red_car_count, $green_car_count){
