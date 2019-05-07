@@ -24,10 +24,16 @@ Route::get('/Rule', [
     'uses' => 'MainController@getRule',
     'as' => 'main.rule'
 ]);
-Route::get('/Rule2', [
+
+Route::get('/MakeRule/delete/{id}', [
+    'uses' => 'MainController@deleteRule',
+    'as' => 'rule.delete'
+]);
+
+/*Route::get('/Rule2', [
     'uses' => 'MainController@getRule2',
     'as' => 'main.rule2'
-]);
+]);*/
 Route::get('/Video', [
     'uses' => 'MainController@getVideo',
     'as' => 'main.video'
@@ -38,9 +44,9 @@ Route::get('/Member', [
     'as' => 'main.member'
 ]);
 
-Route::get('/makerule', [
+Route::get('/MakeRule', [
     'uses' => 'MainController@getMakeRule',
-    'as' => 'main.makeRule'
+    'as' => 'main.makerule'
 ]);
 
 

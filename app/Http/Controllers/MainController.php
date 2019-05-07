@@ -19,35 +19,43 @@ class MainController extends Controller
         ]);
     }
 
-    public function getRule2(){
+    public function deleteRule($id){
+        DB::table('rules')
+            ->where('id', $id)
+            ->delete();
+
+        return redirect()->back();
+    }
+
+/*    public function getRule2(){
         $rules = Rule::with('condition')->get();
         return view('rule2', [
             'rules' => $rules
         ]);
-    }
+    }*/
 
     public function getVideo(){
-        $direct_12_sec = DB::table('lights')
-            ->where('id', 1)
-            ->value('now_sec');
-
-        $direct_34_sec = DB::table('lights')
-            ->where('id', 3)
-            ->value('now_sec');
-
-        $direct_12_default = DB::table('lights')
-            ->where('id', 1)
-            ->value('default_sec');
-
-        $direct_34_default = DB::table('lights')
-            ->where('id', 3)
-            ->value('default_sec');
+//        $direct_12_sec = DB::table('lights')
+//            ->where('id', 1)
+//            ->value('now_sec');
+//
+//        $direct_34_sec = DB::table('lights')
+//            ->where('id', 3)
+//            ->value('now_sec');
+//
+//        $direct_12_default = DB::table('lights')
+//            ->where('id', 1)
+//            ->value('default_sec');
+//
+//        $direct_34_default = DB::table('lights')
+//            ->where('id', 3)
+//            ->value('default_sec');
 
         return view('video', [
-            'direct_12_sec' => $direct_12_sec,
-            'direct_34_sec' => $direct_34_sec,
-            'direct_12_sec_default' => $direct_12_default,
-            'direct_34_sec_default' => $direct_34_default,
+//            'direct_12_sec' => $direct_12_sec,
+//            'direct_34_sec' => $direct_34_sec,
+//            'direct_12_sec_default' => $direct_12_default,
+//            'direct_34_sec_default' => $direct_34_default,
             ]);
     }
     public function getMember(){
@@ -55,6 +63,10 @@ class MainController extends Controller
     }
 
     public function getMakeRule(){
-        return view('makeRule');
+        $rules = Rule::with('condition')->get();
+
+        return view('makeRule', [
+            'rules' => $rules
+        ]);
     }
 }

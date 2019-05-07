@@ -42,14 +42,20 @@
     border: 1px solid #000000;
     border-top: none;
     }
+    .table-center{
+    width: 70%;
+    border-style: none;
+    margin-left:auto;
+    margin-right:auto;
+    }
+
 @endsection
 
 @section('content')
 
-    <table  style="width: 70%;margin-left: 15%;border-style: none">
-
-        <tr style="background-color:white;border-style: none">
-            <td rowspan="6" width="40%" ><img src="images/block.png"></td>
+    <table class="table-center">
+        <tr style="background-color:transparent;border-style: none">
+            <td rowspan="6" width="200px" ><img src="images/block.png" style="alignment: center" width="250px"></td>
             <td style="background-color:#FFB35A" >&nbsp</td>
             <td align="center" style="background-color:#FFB35A" ><b>原本秒數</b> </td>
             <td align="center" style="background-color:#FFB35A"><b>扣掉秒數</b></td>
@@ -58,17 +64,25 @@
         </tr>
         <tr style="background-color:white">
             <td align="center">一&二綠燈</td>
-            <td align="center">{{ $direct_12_sec_default }} 秒</td>
-            <td align="center">{{ $direct_12_sec_default }} 秒</td>
-            <td align="center">{{ $direct_12_sec_default }} 秒</td>
-            <td align="center">{{ $direct_12_sec_default }} 秒</td>
+            {{--<td align="center">{{ $direct_12_sec_default }} 秒</td>--}}
+            {{--<td align="center">{{ $direct_12_sec_default }} 秒</td>--}}
+            {{--<td align="center">{{ $direct_12_sec_default }} 秒</td>--}}
+            {{--<td align="center">{{ $direct_12_sec_default }} 秒</td>--}}
+            <td align="center"> 0 秒</td>
+            <td align="center"> 0 秒</td>
+            <td align="center"> 0 秒</td>
+            <td align="center"> 0 秒</td>
         </tr>
         <tr style="background-color:white">
             <td align="center">三&四綠燈</td>
-            <td align="center">{{ $direct_12_sec_default }} 秒</td>
-            <td align="center">{{ $direct_12_sec_default }} 秒</td>
-            <td align="center">{{ $direct_12_sec_default }} 秒</td>
-            <td align="center">{{ $direct_12_sec_default }} 秒</td>
+            {{--<td align="center">{{ $direct_12_sec_default }} 秒</td>--}}
+            {{--<td align="center">{{ $direct_12_sec_default }} 秒</td>--}}
+            {{--<td align="center">{{ $direct_12_sec_default }} 秒</td>--}}
+            {{--<td align="center">{{ $direct_12_sec_default }} 秒</td>--}}
+            <td align="center"> 0 秒</td>
+            <td align="center"> 0 秒</td>
+            <td align="center"> 0 秒</td>
+            <td align="center">10秒</td>
         </tr>
         <tr ><!--<td style="background-color:#FFB35A">&nbsp</td>-->
             <td colspan="5" align="center" style="background-color:#FFB35A;" ><b>車輛數</b></td>
@@ -76,15 +90,19 @@
 
         <tr style="background-color: white;">
             <td align="center">一／三鏡頭車輛數</td>
-            <td colspan="4" align="right" style="padding-right: 80px" >
-                <b>12</b></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>12</b></td>
 
         </tr>
 
         <tr style="background-color: white">
             <td align="center">二／四鏡頭車輛數</td>
-            <td colspan="4" align="right"style="padding-right: 80px" >
-                <b>12</b></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>12</b></td>
 
         </tr>
 

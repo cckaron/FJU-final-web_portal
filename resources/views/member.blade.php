@@ -32,7 +32,7 @@
 
 @endsection
 @section('content')
-    <h2 style="color: #FF8300; margin-left: 80px"><b>研究成員</b></h2>
+    <h2 style="color:#FF8300; margin-left: 80px"><b>研究成員</b></h2>
 @endsection
 
 @section('content2')

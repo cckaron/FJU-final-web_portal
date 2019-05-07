@@ -79,7 +79,7 @@
     <div align="center">
         <h2>
             <b><font color="FF8300">規則介紹</font></b>
-            <button class="btn btn-primary btn-lg" value="">制定規則</button>
+            <button class="btn btn-primary btn-lg" value="" onclick="window.open('{{ route('main.makerule') }}');">制定規則</button>
         </h2>
     </div>
         <div align="center">

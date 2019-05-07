@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="{{ URL::to('bootstrap-4.3.1-dist/css/bootstrap.min.css') }}" />
-    <style>@yield('style')</style>
+    <link rel="stylesheet" href="{{ URL::to('/bootstrap-4.3.1-dist/css/bootstrap.min.css') }}" />
+    @yield('style')
 </head>
 <body>
 
