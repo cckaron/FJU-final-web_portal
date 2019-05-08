@@ -35,9 +35,49 @@
     div {
     display: block;
     }
-    table th{background:#FF8300;color:white;font-size:25px}
+    table th{background:#FF8300;color:white;font-size:25px;}
     table tr td{background:#FFCC8C;color:#000000}
     table tr:nth-of-type(2n+2) td{background:#FFF8DC}
+
+    .pagination {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-right: 0;
+    list-style: none;
+    font-size:20px;
+    border-radius: 2px;
+    }
+
+    input[type="search"]{
+    height: 3.25rem;
+    }
+    input[type="search"] {
+    width: 150px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: transparet;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    }
+
+    input[type="search"]:focus {
+    width: 100%;
+    }
+    body {
+    font-size: 20px;
+    }
+    .row {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+
+    }
 
 @endsection
 
@@ -66,7 +106,7 @@
 
 
     <div align="center">
-        <div class="table-responsive" style="width: 90%;">
+        {{--<div class="table-responsive" style="width: 90%;">
             <table style="font-size: 25px;width:1520px">
                 <thead>
                 <tr>
@@ -109,10 +149,64 @@
                 @endforeach
                 </tbody>
             </table>
+        </div>--}}
+
+        <div class="table-responsive" style="width: 80%;">
+            <table id="zero_config" class="table table-striped table-bordered" style="font-size: 25px;width:1500px">
+                <thead>
+                <tr>
+                    <th>情境<br>
+                        紅／綠燈道車輛多寡</th>
+                    <th>紅燈車輛數</th>
+                    <th>綠燈車輛數</th>
+                    <th>偵測後更改秒數</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach($rules as $rule)
+
+                    <tr style="background:#FFCC8C;">
+                        <td align="left">
+                            &nbsp;{{ $rule->name }}
+                        </td>
+
+                        <!-- red light -->
+                        <td>
+                            @foreach($rule->condition as $condition)
+                                @if($condition->color == "red")
+                                    汽 {{ $condition->operator }} {{ $condition->car_count }}
+                                    <br>
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach($rule->condition as $condition)
+                                @if($condition->color == "green")
+                                    汽 {{ $condition->operator }} {{ $condition->car_count }}
+                                    <br>
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>秒數 {{ $rule->operator }} {{ $rule->second }}</td>
+                    </tr>
+
+                @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
     <div>&nbsp;</div>
 
 @endsection
 
+@section('script1')
+            <script src="{{ URL::to('DataTables/datatables.min.js') }}"></script>
+            <script>
+                /****************************************
+                 *       Basic Table                   *
+                 ****************************************/
+                $('#zero_config').DataTable();
+            </script>
+@endsection
 

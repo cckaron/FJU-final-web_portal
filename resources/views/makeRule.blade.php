@@ -43,14 +43,7 @@
                 <span>{{ $rule->id }}.{{ $rule->name }}</span>
             </a>
             <div align="right">
-                <button onclick="myFunction()">刪除規則</button>
-                <script>
-                    function myFunction() {
-                        if (confirm("確認刪除規則！")) {
-
-                        }
-                    }
-                </script>
+                <a href="{{ route('rule.delete', ['id' => $rule->id]) }}" onclick="return confirm('確認刪除規則！')">刪除規則</a>
             </div>
             <div id="Toggle-{{ $key }}" class="multi-collapse collapse" style="">
                 <div class="card-body widget-content">
