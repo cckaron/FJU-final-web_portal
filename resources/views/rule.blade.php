@@ -39,11 +39,16 @@
     table tr td{background:#FFCC8C;color:#000000}
     table tr:nth-of-type(2n+2) td{background:#FFF8DC}
 
+    ul.pagination {
+    white-space: nowrap;
+    justify-content: flex-end;
+    }
+
     .pagination {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    padding-right: 0;
+    padding-right:0px;
     list-style: none;
     font-size:20px;
     border-radius: 2px;
@@ -76,7 +81,6 @@
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
-
     }
 
 @endsection
@@ -206,7 +210,9 @@
                 /****************************************
                  *       Basic Table                   *
                  ****************************************/
-                $('#zero_config').DataTable();
+                $('#zero_config').DataTable({
+                    lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "全部"]],
+                });
             </script>
 @endsection
 

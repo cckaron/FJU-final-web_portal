@@ -38,17 +38,42 @@
 
     .tabcontent {
     display: none;
-    padding: 6px 12px;
+    padding: 6px 30px;
     border: 1px solid #000000;
     border-top: none;
     }
+
     .table-center{
     width: 70%;
     border-style: none;
     margin-left:auto;
     margin-right:auto;
     }
-
+    .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+    .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+    * {
+    outline: none;
+    }
+    *, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    }
+    user agent stylesheet
+    div {
+    display: block;
+    }
 @endsection
 
 @section('content')
@@ -111,20 +136,22 @@
 
 
     <div align="center" style="margin-top: 3%">
-    <div class="tab" style="width: 80%;" >
+    <div class="tab" style="width:80%" >
         <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen"><font size="3" color="black">&nbsp;一＆二鏡頭&nbsp;</font></button>
         <button class="tablinks" onclick="openCity(event, 'Paris')"><font size="3" color="black">&nbsp;三＆四鏡頭&nbsp;</font></button>
     </div>
 
     <!-- Tab content -->
-    <div id="London" class="tabcontent" style="width: 80%;">
-        <iframe width="700" height="500" src="http://192.168.50.172:5000/stream" frameborder="0" allowfullscreen></iframe>
-        <iframe width="700" height="500" src="http://192.168.50.172:5001/stream" frameborder="0" allowfullscreen></iframe>
+        <div class="table-responsive">
+    <div id="London" class="tabcontent" style="width:1520px;">
+        <iframe width="1280px" height="720px" src="http://192.168.50.172:5000/stream" frameborder="0" allowfullscreen></iframe>
+        <iframe width="1280px" height="720px" src="http://192.168.50.172:5001/stream" frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <div id="Paris" class="tabcontent" style="width: 80%;">
-        <iframe width="700" height="500" src="http://192.168.50.206:5002/stream" frameborder="0" allowfullscreen></iframe>
-        <iframe width="700" height="500" src="http://192.168.50.206:5003/stream" frameborder="0" allowfullscreen></iframe>
+    <div id="Paris" class="tabcontent" style="width:1520px">
+        <iframe width="1280px" height="720px" src="http://192.168.50.206:5002/stream" frameborder="0" allowfullscreen></iframe>
+        <iframe width="1280px" height="720px" src="http://192.168.50.206:5003/stream" frameborder="0" allowfullscreen></iframe>
+    </div>
     </div>
     </div>
 
