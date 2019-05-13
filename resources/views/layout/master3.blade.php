@@ -44,14 +44,10 @@
 
     <video autoplay loop muted playsinline src="{{ URL::to('images/car.mp4') }}"></video>
 </section>
-<div class="container" style="padding-bottom: 50px;padding-top: 75px">
+
+<div class="container-fluid">
     @yield('content')
 </div>
-
-<div class="container-fluid" style="padding-bottom: 50px;padding-top: 75px">
-    @yield('content3')
-</div>
-@yield('content2')
 <footer id="footer" style="padding:0 0 0 0;">
    <div class="inner" style="padding-top: 1%">
         <div class="content" style="width: 100%;">
