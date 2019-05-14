@@ -4,16 +4,11 @@
     主控台
 @endsection
 
-@section('script')
-@endsection
-
-@section('style')
-    table{background:white;width:80%;margin-left:auto;margin-right:auto;border-color:white;}
-    table tr td{background:white;border-color:white;}
-@endsection
-
 @section('style2')
+
     <link rel="stylesheet" href="{{ URL::to('matrix/css/style.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::to('matrix/css/select2.min.css') }}" />
+
     <style>
         /*canvas{*/
 
@@ -21,140 +16,95 @@
         /*height:300px !important;*/
 
         /*}*/
+        .dataTables_filter {
+            display: none;
+        }
+
+        .dataTables_length{
+            display: none;
+        }
+
+        .container-fluid {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        input{
+            width: 50%;
+            padding: 3px;
+            box-sizing: border-box;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        input[type="search"]{
+            height: 2.0rem;
+        }
     </style>
 @endsection
 
 @section('content')
-    {{--<table >
-        <tr style="border-top:none;border-bottom: outset;border-bottom-width: 2px;border-bottom-color:seashell;">
-            <td colspan="2"><img src="{{ URL::to('images/picture.jpeg') }}"></td>
-        </tr>
-       <!-- <tr style="border-bottom: none">
-            <td colspan="2"><h3><b><font color="#f08080">Logo由來</font></b></h3></td>
-        </tr>-->
-        <tr style="border-bottom: outset;border-bottom-width: 2px;border-bottom-color:seashell;">
-            <td width="30%"><img src="{{ URL::to('images/logo.jpg') }}" width="100%"></td>
-            <td style="vertical-align:middle"><h2><b><font color="#FF8300">Logo由來</font></b></h2><br>
-                <p style="font-size: 1.3em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我們的Logo是以「荷魯斯之眼」作為出發點，Horus象徵著正義之眼。無論是汽車駕駛或機車駕駛，只要是行駛於道路上的用路人都需遵守紅綠燈的號誌。而紅路燈就彷若道路上的眼睛，看著每一個用路人，以溫柔慈祥的眼睛注視著走在歸途上的人們。
-                    我們希望透過我們的｢開天眼」系統，為紅綠燈的秒數做出適當且合理的配置，讓工作了一整天身心俱疲的人們都能快速回到溫暖的家園，以形成正向的外部效益，讓社會福利最大化，對這個養育我們的社會及國家，傾盡我們的微薄之力，一點一滴、積沙成塔地付出碩大宏遠的貢獻，完成我們的企業社會責任。
-                </p>
-            </td>
-        </tr>
-        <tr style="border-bottom: none">
-            <td colspan="2"><h2><b><font color="#FF8300">有關開天眼</font></b></h2></td>
-        </tr>
-        <tr style="border: none">
-            <td colspan="2">
-                <p style="font-size: 1.3em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;「開天眼」是一套運用影像辨識技術來判斷十字路口車子數量，經過函式運算後判斷是否應調整該馬路轉換成綠燈時秒數的系統。
-                判斷時機為路口燈號變為紅燈時，經由我們訂定的規則來對路口變為綠燈的秒數做調整。
-                綠燈秒數有其原本的預設值，判斷後可能會變動綠燈秒數也可能不更動，在每一次判斷完之後就會回歸預設值。
-                </p>
-            </td>
-        </tr>
-    </table>--}}
     <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
-    <!-- Cards -->
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card m-t-0">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="peity_line_neutral left text-center m-t-10"><span><span style="display: none;">10,15,8,14,13,10,10</span>
-                                        <canvas width="50" height="24"></canvas>
-                                        </span>
-                            <h6>10%</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-6 border-left text-center p-t-10">
-                        <h3 class="mb-0 font-weight-bold">150</h3>
-                        <span class="text-muted">New Users</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card m-t-0">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="peity_bar_bad left text-center m-t-10"><span><span style="display: none;">3,5,6,16,8,10,6</span>
-                                        <canvas width="50" height="24"></canvas>
-                                        </span>
-                            <h6>-40%</h6></div>
-                    </div>
-                    <div class="col-md-6 border-left text-center p-t-10">
-                        <h3 class="mb-0 font-weight-bold">4560</h3>
-                        <span class="text-muted">Orders</span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
+    <div class="row">
+        <div class="col-md-12" >
+            <div class="card" style="height:auto">
+                <div class="card-body">
+                    <div class="col-md-2">
+                        <h5 class="card-title m-b-0">搜尋路段</h5>
+                    </div>
+                    <div class="row mb-3 ">
+                        <div class="col-md-2 b-t-20">
+                            <select class="select2 form-control custom-select">
+                                <option>城市</option>
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="select2 form-control custom-select">
+                                <option>區</option>
+                                <optgroup label="Alaskan/Hawaiian Time Zone">
+                                    <option value="AK">Alaska</option>
+                                    <option value="HI">Hawaii</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="select2 form-control custom-select">
+                                <option>路</option>
+                                <optgroup label="Alaskan/Hawaiian Time Zone">
+                                    <option value="AK">Alaska</option>
+                                    <option value="HI">Hawaii</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="select2 form-control custom-select">
+                                <option>路口</option>
+                                <optgroup label="Alaskan/Hawaiian Time Zone">
+                                    <option value="AK">Alaska</option>
+                                    <option value="HI">Hawaii</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
     </div>
-    <!-- End cards -->
-
-    <!-- Line chart -->
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <canvas id="myChart" width="300" height="300"></canvas>
-            </div>
-        </div>
-    </div>
-    <!-- End Chart -->
-
-    <!-- Pie Chart -->
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <canvas id="pieChart" width="300" height="300"></canvas>
-            </div>
-            <div class="col-md-6">
-                <div class="card m-t-0">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="peity_line_good left text-center m-t-10"><span><span style="display: none;">12,6,9,23,14,10,17</span>
-                                        <canvas width="50" height="24"></canvas>
-                                        </span>
-                                <h6>+60%</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-6 border-left text-center p-t-10">
-                            <h3 class="mb-0 ">5672</h3>
-                            <span class="text-muted">Active Users</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card m-t-0">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="peity_bar_good left text-center m-t-10"><span>12,6,9,23,14,10,13</span>
-                                <h6>+30%</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-6 border-left text-center p-t-10">
-                            <h3 class="mb-0 font-weight-bold">2560</h3>
-                            <span class="text-muted">Register</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <!-- End Chart -->
 
     <div class="row">
-        <div class="col-md-6">
-            <div class="card">
+        <div class="col-md-6" >
+            <div class="card" style="height:300px;">
                 <div class="card-body">
                     <h5 class="card-title m-b-0">近期事件</h5>
                 </div>
-                <table class="table">
+                <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
                         <th scope="col">事件名稱</th>
@@ -197,8 +147,87 @@
                 </table>
             </div>
         </div>
+
+        <!-- Pie Chart -->
+        <div class="col-md-6">
+            <div class="card">
+                <canvas id="pieChart" width="300" height="300"></canvas>
+            </div>
+        </div>
+        <!-- End Chart -->
     </div>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.935746114909!2d121.43050381536588!3d25.03625453397131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a7dd8be91eaf%3A0xe342a67d6574f896!2z5aSp5Li75pWZ6LyU5LuB5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1556718929015!5m2!1szh-TW!2stw" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title m-b-0">道路規則</h5>
+                </div>
+                <div class="table-responsive">
+                    <table id="zero_config" class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>情境<br>
+                                紅／綠燈道車輛多寡</th>
+                            <th>紅燈車輛數</th>
+                            <th>綠燈車輛數</th>
+                            <th>偵測後更改秒數</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach($rules as $rule)
+
+                            <tr>
+                                <td>
+                                    &nbsp;{{ $rule->name }}
+                                </td>
+
+                                <!-- red light -->
+                                <td>
+                                    @foreach($rule->condition as $condition)
+                                        @if($condition->color == "red")
+                                            汽 {{ $condition->operator }} {{ $condition->car_count }}
+                                            <br>
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($rule->condition as $condition)
+                                        @if($condition->color == "green")
+                                            汽 {{ $condition->operator }} {{ $condition->car_count }}
+                                            <br>
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>秒數 {{ $rule->operator }} {{ $rule->second }}</td>
+                            </tr>
+
+                        @endforeach
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Line chart -->
+        <div class="col-md-6">
+            <div class="card">
+                <canvas id="myChart" width="300" height="300"></canvas>
+            </div>
+        </div>
+        <!-- End Chart -->
+    </div>
+
+    {{--    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.935746114909!2d121.43050381536588!3d25.03625453397131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a7dd8be91eaf%3A0xe342a67d6574f896!2z5aSp5Li75pWZ6LyU5LuB5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1556718929015!5m2!1szh-TW!2stw" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>--}}
 @endsection
 
 @section('script1')
@@ -212,26 +241,15 @@
     <script src="{{ URL::to('matrix/js/sidebarmenu.js') }}"></script>
     <script src="{{ URL::to('matrix/js/custom.min.js') }}"></script>
 
-    <!-- chart -->
-    <script src="{{ URL::to('matrix/js/chart/matrix.interface.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/chart/excanvas.min.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/flot/jquery.flot.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/flot/jquery.flot.pie.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/flot/jquery.flot.time.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/flot/jquery.flot.stack.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/flot/jquery.flot.crosshair.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/chart/jquery.peity.min.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/chart/matrix.charts.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/chart/jquery.flot.pie.min.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/jquery.flot.tooltip.min.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/chart/turning-series.js') }}"></script>
-    <script src="{{ URL::to('matrix/js/chart-page-init.js') }}"></script>
-
     <!-- -->
     <script src="{{ URL::to('js/chart/Chart.bundle.js') }}"></script>
     <script src="{{ URL::to('js/chart/Chart.bundle.min.js') }}"></script>
     <script src="{{ URL::to('js/chart/Chart.js') }}"></script>
     <script src="{{ URL::to('js/chart/Chart.min.js') }}"></script>
+    <script src="{{ URL::to('DataTables/datatables.min.js') }}"></script>
+
+    <script src="{{ URL::to('matrix/js/select2.full.min.js') }}"></script>
+    <script src="{{ URL::to('matrix/js/select2.min.js') }}"></script>
 
     <script>
         var ctx = document.getElementById('myChart');
@@ -319,6 +337,65 @@
         });
 
 
+    </script>
+
+    <script>
+        //***********************************//
+        // For select 2
+        //***********************************//
+        $(".select2").select2();
+
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        var table = $('#zero_config').DataTable({
+            lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "全部"]],
+            language: {
+                "processing":   "處理中...",
+                "loadingRecords": "載入中...",
+                "lengthMenu":   "顯示 _MENU_ 項結果",
+                "zeroRecords":  "沒有符合的結果",
+                "info":         "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                "infoEmpty":    "顯示第 0 至 0 項結果，共 0 項",
+                "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                "infoPostFix":  "",
+                "search":       "搜尋全部:",
+                "paginate": {
+                    "first":    "第一頁",
+                    "previous": "上一頁",
+                    "next":     "下一頁",
+                    "last":     "最後一頁"
+                },
+                "aria": {
+                    "sortAscending":  ": 升冪排列",
+                    "sortDescending": ": 降冪排列"
+                }
+            }
+        });
+
+        // Setup - add a text input to each footer cell
+        $('#zero_config tfoot th').each( function () {
+            var title = $(this).text();
+            // $(this).html( '<input type="text" placeholder="搜尋 '+title+' 欄位" />' );
+            $(this).html( '<input type="text" placeholder="搜尋" />' );
+        } );
+        var r = $('#zero_config tfoot tr');
+        r.find('th').each(function(){
+            $(this).css('padding', 8);
+        });
+        // $('#zero_config thead').append(r);
+        r.appendTo($('#zero_config thead'));
+        // Apply the search
+        table.columns().every( function () {
+            var that = this;
+            $( 'input', this.footer() ).on( 'keyup change', function () {
+                if ( that.search() !== this.value ) {
+                    that
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
     </script>
 
 @endsection

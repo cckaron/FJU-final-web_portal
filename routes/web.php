@@ -20,34 +20,50 @@ Route::get('/', [
     'uses' => 'MainController@getIndex',
     'as' => 'main.index'
 ]);
-Route::get('/Rule', [
-    'uses' => 'MainController@getRule',
-    'as' => 'main.rule'
+
+Route::get('/signIn', [
+    'uses' => 'authController@signInPage',
+    'as' => 'auth.signIn'
 ]);
 
-Route::get('/MakeRule/delete/{id}', [
-    'uses' => 'MainController@deleteRule',
-    'as' => 'rule.delete'
+Route::post('/signIn', [
+    'uses' => 'authController@postSignIn',
+    'as' => 'auth.signIn'
 ]);
 
-/*Route::get('/Rule2', [
-    'uses' => 'MainController@getRule2',
-    'as' => 'main.rule2'
-]);*/
-Route::get('/Video', [
-    'uses' => 'MainController@getVideo',
-    'as' => 'main.video'
-]);
+Route::group(['prefix' => 'auth'], function(){
+    Route::get('/sign-out', [
+        'uses' => 'UserAuthController@getSignOut',
+        'as' => 'auth.signOut',
+    ]);
+});
 
-Route::get('/Member', [
-    'uses' => 'MainController@getMember',
-    'as' => 'main.member'
-]);
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/Rule', [
+        'uses' => 'MainController@getRule',
+        'as' => 'main.rule'
+    ]);
 
-Route::get('/MakeRule', [
-    'uses' => 'MainController@getMakeRule',
-    'as' => 'main.makerule'
-]);
+    Route::get('/MakeRule/delete/{id}', [
+        'uses' => 'MainController@deleteRule',
+        'as' => 'rule.delete'
+    ]);
+
+    Route::get('/Video', [
+        'uses' => 'MainController@getVideo',
+        'as' => 'main.video'
+    ]);
+
+    Route::get('/Member', [
+        'uses' => 'MainController@getMember',
+        'as' => 'main.member'
+    ]);
+
+    Route::get('/MakeRule', [
+        'uses' => 'MainController@getMakeRule',
+        'as' => 'main.makerule'
+    ]);
+});
 
 
 Route::get('/arduino/{now_direct}/{now_sec}', [
@@ -60,3 +76,4 @@ Route::get('/judgeRule/{road1_id}/{road2_id}/{road1_car_count}/{road2_car_count}
    'as' => 'rule.judge'
 ]);
 
+Route::get('/home', 'HomeController@index')->name('home');

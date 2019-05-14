@@ -61,7 +61,7 @@ class RuleController extends Controller
 
         $url .= "&second=".$ans->second;
 
-//        $client = new \GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client();
 //        try {
 //            $res = $client->request('GET', $url);
 //        } catch (GuzzleException $e) {

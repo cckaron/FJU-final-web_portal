@@ -205,14 +205,14 @@
 @endsection
 
 @section('script1')
-            <script src="{{ URL::to('DataTables/datatables.min.js') }}"></script>
-            <script>
-                /****************************************
-                 *       Basic Table                   *
-                 ****************************************/
-                $('#zero_config').DataTable({
-                    lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "全部"]],
-                });
-            </script>
+    <script src="{{ URL::to('DataTables/datatables.min.js') }}"></script>
+    <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#zero_config').DataTable({
+            lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "全部"]],
+        });
+    </script>
 @endsection
 

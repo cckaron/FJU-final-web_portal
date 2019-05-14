@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\DB;
 class MainController extends Controller
 {
     public function getIndex(){
-        return view('index');
+        $rules = Rule::with('condition')->get();
+        return view('index', [
+            'rules' => $rules
+        ]);
     }
     public function getRule(){
         $rules = Rule::with('condition')->get();

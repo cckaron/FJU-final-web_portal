@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class structureSeeder extends Seeder
+class conditionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,140 +13,9 @@ class structureSeeder extends Seeder
      */
     public function run()
     {
-        //intersection
-        DB::table('intersections')->insert([
-            'name' => '路口(一)',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        DB::table('conditions')->truncate();
 
-        //road
-        DB::table('roads')->insert([
-            'name' => '方向(1)',
-            'intersections_id' => 1,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('roads')->insert([
-            'name' => '方向(2)',
-            'intersections_id' => 1,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        //light
-        DB::table('lights')->insert([
-            'name' => '號誌(1)',
-            'roads_id' => 1,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('lights')->insert([
-            'name' => '號誌(2)',
-            'roads_id' => 1,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('lights')->insert([
-            'name' => '號誌(1)',
-            'roads_id' => 2,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('lights')->insert([
-            'name' => '號誌(2)',
-            'roads_id' => 2,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        //rule
-        DB::table('rules')->insert([
-            'intersections_id' => 1,
-            'name' => '紅燈車多/綠燈車多',
-            'operator' => '+',
-            'second' => 0,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('rules')->insert([
-            'intersections_id' => 1,
-            'name' => '紅燈車普通/綠燈車普通',
-            'operator' => '+',
-            'second' => 0,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('rules')->insert([
-            'intersections_id' => 1,
-            'name' => '紅燈車少/綠燈車少',
-            'operator' => '=',
-            'second' => 10,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('rules')->insert([
-            'intersections_id' => 1,
-            'name' => '紅燈車少/綠燈車多',
-            'operator' => '*',
-            'second' => 0.5,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('rules')->insert([
-            'intersections_id' => 1,
-            'name' => '紅燈車普通/綠燈車多',
-            'operator' => '*',
-            'second' => 1.25,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('rules')->insert([
-            'intersections_id' => 1,
-            'name' => '紅燈車少/綠燈車普通',
-            'operator' => '*',
-            'second' => 1.25,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('rules')->insert([
-            'intersections_id' => 1,
-            'name' => '紅燈車多/綠燈車少',
-            'operator' => '*',
-            'second' => 0.5,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('rules')->insert([
-            'intersections_id' => 1,
-            'name' => '紅燈車多/綠燈車普通',
-            'operator' => '*',
-            'second' => 0.75,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('rules')->insert([
-            'intersections_id' => 1,
-            'name' => '紅燈車普通/綠燈車少',
-            'operator' => '*',
-            'second' => 0.75,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        //condition
         //rule 1
         DB::table('conditions')->insert([
             'rules_id' => 1,
@@ -405,5 +274,7 @@ class structureSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

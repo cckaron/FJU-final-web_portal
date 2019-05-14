@@ -13,8 +13,25 @@ class CreateBasicStructure extends Migration
      */
     public function up()
     {
-        Schema::create('intersections', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->string('name')->nullable();
+            $table->timestamps();
+
+            $table->index('id');
+        });
+
+        Schema::create('districts', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->integer('cities_id')->unsigned()->nullable();
+            $table->string('name')->nullable();
+            $table->timestamps();
+
+            $table->index('id');
+        });
+
+        Schema::create('intersections', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name')->nullable();
             $table->timestamps();
 
@@ -22,17 +39,23 @@ class CreateBasicStructure extends Migration
         });
 
         Schema::create('roads', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->integer('intersections_id')->unsigned()->nullable();
+            $table->increments('id');
             $table->string('name')->nullable();
             $table->timestamps();
 
             $table->index('id');
         });
 
+        Schema::create('intersection_road', function (Blueprint $table) {
+            $table->integer('intersections_id')->unsigned();
+            $table->integer('roads_id')->unsigned();
+            $table->primary(['intersections_id', 'roads_id']);
+            $table->timestamps();
+        });
+
         Schema::create('lights', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->integer('roads_id')->unsigned()->nullable();
+            $table->increments('id');
+            $table->integer('intersections_id')->unsigned();
             $table->string('name')->nullable();
             $table->integer('now_second')->nullable();
             $table->string('now_color')->nullable();
@@ -41,8 +64,8 @@ class CreateBasicStructure extends Migration
         });
 
         Schema::create('rules', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->integer('intersections_id')->unsigned()->nullable();
+            $table->increments('id');
+            $table->integer('intersections_id')->unsigned();
             $table->string('name')->nullable();
             $table->string('operator')->nullable();
             $table->float('second')->nullable();
@@ -52,8 +75,8 @@ class CreateBasicStructure extends Migration
         });
 
         Schema::create('conditions', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->integer('rules_id')->unsigned()->nullable();
+            $table->increments('id');
+            $table->integer('rules_id')->unsigned();
             $table->string('name');
             $table->string('color');
             $table->string('operator');
@@ -61,12 +84,28 @@ class CreateBasicStructure extends Migration
             $table->timestamps();
         });
 
-        Schema::table('roads', function (Blueprint $table) {
-            $table->foreign('intersections_id')->references('id')->on('intersections')->onUpdate('CASCADE')->onDelete('CASCADE');
+        //foreign key
+        Schema::table('districts', function (Blueprint $table) {
+            $table->foreign('id')->references('id')->on('cities')->onUpdate('CASCADE')->onDelete('CASCADE');
+        });
+
+        Schema::table('intersections', function (Blueprint $table) {
+            $table->foreign('id')->references('id')->on('districts')->onUpdate('CASCADE')->onDelete('CASCADE');
+        });
+
+        Schema::table('intersection_road', function (Blueprint $table) {
+            $table->foreign('intersections_id')
+                ->references('id')->on('intersections')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
+            $table->foreign('roads_id')
+                ->references('id')->on('roads')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
         });
 
         Schema::table('lights', function (Blueprint $table) {
-            $table->foreign('roads_id')->references('id')->on('roads')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('intersections_id')->references('id')->on('intersections')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
 
         Schema::table('rules', function (Blueprint $table) {
@@ -76,6 +115,8 @@ class CreateBasicStructure extends Migration
         Schema::table('conditions', function (Blueprint $table) {
             $table->foreign('rules_id')->references('id')->on('conditions')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
+
+
     }
 
     /**
