@@ -16,14 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [
-    'uses' => 'MainController@getIndex',
-    'as' => 'main.index'
-]);
-
-Route::get('/signIn', [
+Route::get('login', [
     'uses' => 'authController@signInPage',
-    'as' => 'auth.signIn'
+    'as' => 'login'
+]);
+Route::post('login', [
+    'as' => '',
+    'uses' => 'authController@postSignIn'
 ]);
 
 Route::post('/signIn', [
@@ -31,14 +30,37 @@ Route::post('/signIn', [
     'as' => 'auth.signIn'
 ]);
 
+// Password Reset Routes...
+Route::post('password/email', [
+    'as' => 'password.email',
+    'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail'
+]);
+Route::get('password/reset', [
+    'as' => 'password.request',
+    'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm'
+]);
+Route::post('password/reset', [
+    'as' => 'password.update',
+    'uses' => 'Auth\ResetPasswordController@reset'
+]);
+Route::get('password/reset/{token}', [
+    'as' => 'password.reset',
+    'uses' => 'Auth\ResetPasswordController@showResetForm'
+]);
+
 Route::group(['prefix' => 'auth'], function(){
     Route::get('/sign-out', [
-        'uses' => 'UserAuthController@getSignOut',
+        'uses' => 'authController@getSignOut',
         'as' => 'auth.signOut',
     ]);
 });
 
 Route::group(['middleware' => 'auth'], function(){
+    Route::get('/', [
+        'uses' => 'MainController@getIndex',
+        'as' => 'main.index'
+    ]);
+
     Route::get('/Rule', [
         'uses' => 'MainController@getRule',
         'as' => 'main.rule'
@@ -75,5 +97,12 @@ Route::get('/judgeRule/{road1_id}/{road2_id}/{road1_car_count}/{road2_car_count}
    'uses' => 'RuleController@judgeRule',
    'as' => 'rule.judge'
 ]);
+
+Route::group(['prefix' => 'ajax'], function(){
+    Route::get('/sign-out', [
+        'uses' => 'authController@getSignOut',
+        'as' => 'auth.signOut',
+    ]);
+});
 
 Route::get('/home', 'HomeController@index')->name('home');

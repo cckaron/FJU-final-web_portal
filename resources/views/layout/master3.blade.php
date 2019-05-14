@@ -28,6 +28,8 @@
         <li><a href="{{ route('main.rule') }}">規則介紹</a></li>
         <li><a href="{{ route('main.video') }}">即時影片</a></li>
         <li><a href="{{ route('main.member') }}">研究成員</a></li>
+        <li><a href="{{ route('auth.signOut') }}">登出</a></li>
+
     </ul>
 </nav>
 

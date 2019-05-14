@@ -57,9 +57,11 @@
                     </div>
                     <div class="row mb-3 ">
                         <div class="col-md-2 b-t-20">
-                            <select class="select2 form-control custom-select">
-                                <option>城市</option>
-                                <option></option>
+                            <select id="citySelect" class="select2 form-control custom-select">
+                                <option>請選擇城市</option>
+                                @foreach($cities as $city)
+                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-2">
@@ -396,6 +398,34 @@
                 }
             } );
         } );
+    </script>
+
+    <script>
+        $('#citySelect').on('change', function() {
+            var city_id = this.value;
+            $.ajax({
+                url:'{{ route('select.changeCity') }}',
+                method:"POST",
+                data: city_id,
+                dataType:"json",
+                success:function(data)
+                {
+                    if (data.error.length > 0)
+                    {
+                        var error_html = '';
+                        for (var count = 0; count < data.error.length; count++)
+                        {
+                            error_html += '<div class="alert alert-danger">'+data.error[count]+'</div>';
+                        }
+                        $('#form_output').html(error_html);
+                    }
+                    else
+                    {
+                        $('#form_output').html(data.success);
+                    }
+                }
+            })
+        });
     </script>
 
 @endsection

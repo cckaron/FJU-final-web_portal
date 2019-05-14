@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
     public function getIndex(){
+        $user = Auth::user();
+        $cities = null;
+        //admin
+        if ($user->type == 1){
+            $cities = City::all();
+        }
+
         $rules = Rule::with('condition')->get();
+
         return view('index', [
-            'rules' => $rules
+            'rules' => $rules,
+            'cities' => $cities
         ]);
     }
     public function getRule(){
