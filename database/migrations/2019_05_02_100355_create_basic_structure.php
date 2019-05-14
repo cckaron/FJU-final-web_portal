@@ -84,6 +84,8 @@ class CreateBasicStructure extends Migration
             $table->timestamps();
         });
 
+
+
         //foreign key
         Schema::table('districts', function (Blueprint $table) {
             $table->foreign('id')->references('id')->on('cities')->onUpdate('CASCADE')->onDelete('CASCADE');

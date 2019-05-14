@@ -126,8 +126,8 @@
                             <a href="#" data-toggle="tooltip" data-placement="top" title="推播訊息">
                                 <i class="mdi mdi-access-point"></i>
                             </a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="詳細內容">
-                                </i><i class="mdi mdi-open-in-new"></i>
+                            <a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" title="詳細內容">
+                                <i class="mdi mdi-open-in-new"></i>
                             </a>
                         </td>
                     </tr>
@@ -140,8 +140,8 @@
                             <a href="#" data-toggle="tooltip" data-placement="top" title="推播訊息">
                                 <i class="mdi mdi-access-point"></i>
                             </a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="詳細內容">
-                                </i><i class="mdi mdi-open-in-new"></i>
+                            <a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" title="詳細內容">
+                                <i class="mdi mdi-open-in-new"></i>
                             </a>
                         </td>
                     </tr>
@@ -227,6 +227,54 @@
             </div>
         </div>
         <!-- End Chart -->
+    </div>
+
+    <!-- start ajax correct assignment window-->
+    <div id="detailModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="change_form">
+                    <div class="modal-header" style="margin-top: 20px;">
+                        <h4 class="modal-title">維修單資訊</h4>
+                        <button type="button" class="close" data-dismiss="modal" style="            box-shadow: 0px 0px 0px white;
+">
+                            &times;
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ csrf_field() }}
+                        <span id="form_output"></span>
+                        <div class="form-group">
+                            <label>報修單生成時間</label>
+                            <h5 style="color:blue">2019 年 4 月 03 號 21 時 30 分 51 秒</h5>
+                        </div>
+                        <div class="form-group">
+                            <label>地區</label>
+                            <h5 style="color:blue">新北市 新莊區</h5>
+                        </div>
+                        <div class="form-group">
+                            <label>路口編號</label>
+                            <h5 style="color:blue">001</h5>
+                        </div>
+                        <div class="form-group">
+                            <label>路口名稱</label>
+                            <h5 style="color:blue">中正路和建國一路交叉口</h5>
+                        </div>
+                        <div class="form-group">
+                            <label>錯誤代碼</label>
+                            <h5 style="color:red">A01: [緊急]通訊控制器無回應</h5>
+                        </div>
+                        <div class="form-group">
+                            <label>維修狀態</label>
+                            <h5 style="color:green">已派發人員</h5>
+                        </div>
+                        <div class="form-group">
+                            <h6 style="color:blue; float:right">最後更新時間: 2小時前</h6>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     {{--    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.935746114909!2d121.43050381536588!3d25.03625453397131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a7dd8be91eaf%3A0xe342a67d6574f896!2z5aSp5Li75pWZ6LyU5LuB5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1556718929015!5m2!1szh-TW!2stw" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>--}}

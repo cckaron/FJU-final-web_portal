@@ -85,6 +85,16 @@ Route::group(['middleware' => 'auth'], function(){
         'uses' => 'MainController@getMakeRule',
         'as' => 'main.makerule'
     ]);
+
+    Route::get('/user/manage', [
+        'uses' => 'MainController@getUserManage',
+        'as' => 'user.manage'
+    ]);
+
+    Route::get('/user/delete/{id}', [
+        'uses' => 'MainController@deleteUser',
+        'as' => 'user.delete'
+    ]);
 });
 
 
@@ -99,9 +109,9 @@ Route::get('/judgeRule/{road1_id}/{road2_id}/{road1_car_count}/{road2_car_count}
 ]);
 
 Route::group(['prefix' => 'ajax'], function(){
-    Route::get('/sign-out', [
-        'uses' => 'authController@getSignOut',
-        'as' => 'auth.signOut',
+    Route::get('/changeCity', [
+        'uses' => 'ajaxController@changeCity',
+        'as' => 'select.changeCity',
     ]);
 });
 

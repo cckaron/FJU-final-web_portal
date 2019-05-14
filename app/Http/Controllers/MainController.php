@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Rule;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -82,5 +83,21 @@ class MainController extends Controller
         return view('makeRule', [
             'rules' => $rules
         ]);
+    }
+
+    public function getUserManage(){
+        $users = User::all();
+
+        return view('users.manage', [
+            'users' => $users
+        ]);
+    }
+
+    public function deleteUser($id){
+        DB::table('users')
+            ->where('id', $id)
+            ->delete();
+
+        return redirect()->back()->with('message', '已成功刪除帳號！');
     }
 }
