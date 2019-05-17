@@ -20,13 +20,9 @@ Route::get('login', [
     'uses' => 'authController@signInPage',
     'as' => 'login'
 ]);
-Route::post('login', [
-    'as' => '',
-    'uses' => 'authController@postSignIn'
-]);
 
 Route::post('/signIn', [
-    'uses' => 'authController@postSignIn',
+    'uses' => 'AuthController@postSignIn',
     'as' => 'auth.signIn'
 ]);
 
@@ -103,7 +99,7 @@ Route::get('/arduino/{now_direct}/{now_sec}', [
    'as' => 'arduino.currentInfo'
 ]);
 
-Route::get('/judgeRule/{road1_id}/{road2_id}/{road1_car_count}/{road2_car_count}', [
+Route::get('/judgeRule/{intersection_id}/{road1_car_count}/{road2_car_count}/{open}', [
    'uses' => 'RuleController@judgeRule',
    'as' => 'rule.judge'
 ]);

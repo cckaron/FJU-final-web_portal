@@ -115,7 +115,7 @@
                                         <button name="add" class="btn" data-toggle="modal" data-target="#changeModal" type="submit" data-id="{{ $user->id }}">
                                             編輯
                                         </button>
-                                        <a href="{{ route('user.delete', ['id' => $user->id]) }}" class="btn btn-danger btn-md" onclick="return confirm('該學生資料將會一併刪除，確定刪除?')">
+                                        <a href="{{ route('user.delete', ['id' => $user->id]) }}" class="btn btn-danger btn-md" onclick="return confirm('該人員相關資料將會一併刪除，確定刪除?')">
                                             刪除
                                         </a>
                                     </td>

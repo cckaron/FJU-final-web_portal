@@ -40,6 +40,7 @@ class CreateBasicStructure extends Migration
 
         Schema::create('roads', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('districts_id')->unsigned()->nullable();
             $table->string('name')->nullable();
             $table->timestamps();
 
@@ -88,11 +89,11 @@ class CreateBasicStructure extends Migration
 
         //foreign key
         Schema::table('districts', function (Blueprint $table) {
-            $table->foreign('id')->references('id')->on('cities')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('cities_id')->references('id')->on('cities')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
 
-        Schema::table('intersections', function (Blueprint $table) {
-            $table->foreign('id')->references('id')->on('districts')->onUpdate('CASCADE')->onDelete('CASCADE');
+        Schema::table('roads', function (Blueprint $table) {
+            $table->foreign('districts_id')->references('id')->on('districts')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
 
         Schema::table('intersection_road', function (Blueprint $table) {

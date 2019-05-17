@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Road extends Model
 {
     public function intersection(){
-        return $this->belongsTo('App\Intersection', 'intersections_id');
+        return $this->belongsToMany('App\Intersection', 'intersection_road', 'roads_id', 'intersections_id  ','id', 'id');
     }
 
     public function light(){

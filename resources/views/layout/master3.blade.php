@@ -16,7 +16,8 @@
 
 <!-- Header -->
 <header id="header">
-    <a class="logo" href="/"><font color="FF8300">OVERLOOK &nbsp;&nbsp;堅守治道</font> </a>
+{{--    <img src="{{ URL::to('images/eye.png') }}" height="25px" width="25px">--}}
+    <a class="logo" href="/"><span style="color:#FF8300">OVERLOOK &nbsp;&nbsp;堅守治道</span> </a>
 
     <nav>
         <a href="#menu">Menu</a>

@@ -33,14 +33,14 @@ class lightSeeder extends Seeder
 
         DB::table('lights')->insert([
             'name' => '左向',
-            'intersections_id' => 2,
+            'intersections_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
         DB::table('lights')->insert([
             'name' => '右向',
-            'intersections_id' => 2,
+            'intersections_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

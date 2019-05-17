@@ -47,7 +47,7 @@ class ruleSeeder extends Seeder
             'intersections_id' => 1,
             'name' => '紅燈車少/綠燈車多',
             'operator' => '*',
-            'second' => 0.5,
+            'second' => 1.5,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

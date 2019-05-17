@@ -18,12 +18,14 @@ class roadSeeder extends Seeder
 
         DB::table('roads')->insert([
             'name' => '中正路',
+            'districts_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
         DB::table('roads')->insert([
             'name' => '建國一路',
+            'districts_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Intersection;
 use App\Road;
 use App\Rule;
 use GuzzleHttp\Exception\GuzzleException;
@@ -10,11 +11,12 @@ use Illuminate\Support\Facades\Log;
 
 class RuleController extends Controller
 {
-    public function judgeRule($road1_id, $road2_id, $road1_car_count, $road2_car_count){
+    public function judgeRule($intersection_id, $road1_car_count, $road2_car_count, $open){
         //區分哪一條路是紅燈，哪一條是綠燈
-        $road1 = Road::where('id', $road1_id)->first();
+        $intersection = Intersection::where('id', $intersection_id)->first();
 
-        if ($road1->light()->first()->now_color == 'red'){
+        $light_left = $intersection->light()->where('name', '左向')->first();
+        if ($light_left->now_color == 'red'){ // 代表左右方向為紅燈，南北方向為綠燈
             $road1_color = 'red';
             $road2_color = 'green';
 
@@ -57,16 +59,22 @@ class RuleController extends Controller
             case "/":
                 $url .= "4";
                 break;
+            case "=":
+                $url .= "5";
+                break;
         }
 
         $url .= "&second=".$ans->second;
 
-        $client = new \GuzzleHttp\Client();
-//        try {
-//            $res = $client->request('GET', $url);
-//        } catch (GuzzleException $e) {
-//            Log::info($e);
-//        }
+        if ($open == 1){
+            $client = new \GuzzleHttp\Client();
+            try {
+                $res = $client->request('GET', $url);
+            } catch (GuzzleException $e) {
+                Log::info($e);
+            }
+        }
+
 
         return $ans->id;
     }
