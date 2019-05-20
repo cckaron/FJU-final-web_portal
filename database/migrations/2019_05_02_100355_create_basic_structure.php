@@ -62,6 +62,8 @@ class CreateBasicStructure extends Migration
             $table->string('now_color')->nullable();
             $table->integer('now_car_count')->nullable();
             $table->timestamps();
+
+            $table->index('id');
         });
 
         Schema::create('rules', function (Blueprint $table) {

@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\DB;
 class MainController extends Controller
 {
     public function getIndex(){
+        $img = DB::table('road_maintenance_forms')
+            ->where('id', 6)
+            ->value('content');
         $user = Auth::user();
         $cities = null;
         //admin
@@ -23,7 +26,8 @@ class MainController extends Controller
 
         return view('index', [
             'rules' => $rules,
-            'cities' => $cities
+            'cities' => $cities,
+            'img' => $img,
         ]);
     }
     public function getRule(){

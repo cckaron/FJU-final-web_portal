@@ -18,9 +18,14 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-
+//auth
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/', 'AuthController@me');
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
+});
+
+//maintainance
+Route::group(['prefix' => 'maintenance'], function () {
+    Route::post('generate', 'MaintainanceController@generate');
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -36,11 +37,11 @@ class AuthController extends Controller
     {
         $credentials = request(['account', 'password']);
 
-        if (! $token = JWTAuth::attempt($credentials)) {
-            return response()->json(['status' => 1, 'message' => 'invalid credentials'], 401);
+        if (! $token = JWTAuth::attempt($credentials, ['exp' => Carbon::now()->addDays(7)->timestamp])) {
+            return response()->json(['result' => 'fail', 'message' => 'invalid credentials'], 401);
         }
 
-        return response()->json(['status' => 0, 'token' => $token]);
+        return response()->json(['result' => 'success', 'token' => $token]);
     }
 
     public function me()
