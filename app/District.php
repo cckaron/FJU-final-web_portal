@@ -8,7 +8,11 @@ class District extends Model
 {
     protected $fillable=['id', 'name','cities_id', 'created_at', 'updated_at'];
 
-    public function district(){
+    public function city(){
         return $this->belongsTo('App\City', 'cities_id');
+    }
+
+    public function road(){
+        return $this->hasMany('App\Road', 'districts_id', 'id');
     }
 }

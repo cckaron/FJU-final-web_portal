@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\Road_maintenance_form;
 use App\Rule;
 use App\User;
 use Illuminate\Http\Request;
@@ -12,9 +13,12 @@ use Illuminate\Support\Facades\DB;
 class MainController extends Controller
 {
     public function getIndex(){
-        $img = DB::table('road_maintenance_forms')
-            ->where('id', 6)
-            ->value('content');
+        $maintenance_forms = Road_maintenance_form::all();
+
+        foreach ($maintenance_forms as $maintenance_form){
+            $maintenance_form->name = DB::table('intersections')->where('id', $maintenance_form->intersections_id)->value('name');
+        }
+
         $user = Auth::user();
         $cities = null;
         //admin
@@ -27,7 +31,7 @@ class MainController extends Controller
         return view('index', [
             'rules' => $rules,
             'cities' => $cities,
-            'img' => $img,
+            'maintenance_forms' => $maintenance_forms,
         ]);
     }
     public function getRule(){

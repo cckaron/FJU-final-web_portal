@@ -65,30 +65,18 @@
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <select class="select2 form-control custom-select">
+                            <select id="districtSelect" class="select2 form-control custom-select">
                                 <option>區</option>
-                                <optgroup label="Alaskan/Hawaiian Time Zone">
-                                    <option value="AK">Alaska</option>
-                                    <option value="HI">Hawaii</option>
-                                </optgroup>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <select class="select2 form-control custom-select">
-                                <option>路</option>
-                                <optgroup label="Alaskan/Hawaiian Time Zone">
-                                    <option value="AK">Alaska</option>
-                                    <option value="HI">Hawaii</option>
-                                </optgroup>
+                            <select id="roadSelect" class="select2 form-control custom-select">
+                                <option>路/街</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <select class="select2 form-control custom-select">
+                            <select id="intersectionSelect" class="select2 form-control custom-select">
                                 <option>路口</option>
-                                <optgroup label="Alaskan/Hawaiian Time Zone">
-                                    <option value="AK">Alaska</option>
-                                    <option value="HI">Hawaii</option>
-                                </optgroup>
                             </select>
                         </div>
 
@@ -102,51 +90,51 @@
 
     <div class="row">
         <div class="col-md-6" >
-            <div class="card" style="height:300px;">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title m-b-0">近期事件</h5>
                 </div>
-                <table class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">事件名稱</th>
-                        <th scope="col">道路編號</th>
-                        <th scope="col">狀態</th>
-                        <th scope="col">報修時間</th>
-                        <th scope="col">動作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>通訊控制器無回應</td>
-                        <td>001</td>
-                        <td class="text-danger">緊急</td>
-                        <td>3 分鐘前</td>
-                        <td>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="推播訊息">
-                                <i class="mdi mdi-access-point"></i>
-                            </a>
-                            <a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" title="詳細內容">
-                                <i class="mdi mdi-open-in-new"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>號誌秒數異常</td>
-                        <td>001</td>
-                        <td class="text-warning">警告</td>
-                        <td>10 分鐘前</td>
-                        <td>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="推播訊息">
-                                <i class="mdi mdi-access-point"></i>
-                            </a>
-                            <a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" title="詳細內容">
-                                <i class="mdi mdi-open-in-new"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">事件名稱</th>
+                            <th scope="col">路口名稱</th>
+                            <th scope="col">狀態</th>
+                            <th scope="col">維修狀態</th>
+                            <th scope="col">報修時間</th>
+                            <th scope="col">動作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($maintenance_forms as $maintenance_form)
+                            <tr>
+                                <td>{{ $maintenance_form->content }}</td>
+                                <td>{{ $maintenance_form->name }}</td>
+                                <td class="text-danger">
+                                    @if($maintenance_form->status == 1)
+                                        緊急
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($maintenance_form->repair_status == 1)
+                                        待修中
+                                    @endif
+                                </td>
+                                <td>{{ $maintenance_form->updated_at->diffForHumans() }}</td>
+                                <td>
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="推播訊息">
+                                        <i class="mdi mdi-access-point"></i>
+                                    </a>
+                                    <a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" title="詳細內容">
+                                        <i class="mdi mdi-open-in-new"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -267,6 +255,9 @@
                         <div class="form-group">
                             <label>維修狀態</label>
                             <h5 style="color:green">已派發人員</h5>
+                        </div>
+                        <div class="form-group">
+                            <img src="<?php echo asset("storage/maintenance/1/cam1.jpg")?>" height="216" width="384"/>
                         </div>
                         <div class="form-group">
                             <h6 style="color:blue; float:right">最後更新時間: 2小時前</h6>
@@ -454,7 +445,7 @@
             $.ajax({
                 url:'{{ route('select.changeCity') }}',
                 method:"POST",
-                data: city_id,
+                data: {'id': city_id},
                 dataType:"json",
                 success:function(data)
                 {

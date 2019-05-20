@@ -29,3 +29,8 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['prefix' => 'maintenance'], function () {
     Route::post('generate', 'MaintainanceController@generate');
 });
+
+//query
+Route::group(['prefix' => 'query'], function () {
+    Route::get('city', 'QueryController@searchByCity');
+});

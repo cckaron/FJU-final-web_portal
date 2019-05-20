@@ -34,10 +34,6 @@ class MaintainanceController extends Controller
                     'maintenance/'.$intersections_id , $file, $filename
                 );
             }
-
-            return response()->json([
-                'filename' => $filename
-            ]);
         }
 
         $isExist = DB::table('road_maintenance_forms')
