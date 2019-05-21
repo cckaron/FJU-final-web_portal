@@ -58,7 +58,7 @@
                     <div class="row mb-3 ">
                         <div class="col-md-2 b-t-20">
                             <select id="citySelect" class="select2 form-control custom-select">
-                                <option>請選擇城市</option>
+                                <option selected disabled>城市</option>
                                 @foreach($cities as $city)
                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                                 @endforeach
@@ -66,17 +66,17 @@
                         </div>
                         <div class="col-md-2">
                             <select id="districtSelect" class="select2 form-control custom-select">
-                                <option>區</option>
+                                <option selected disabled>行政區</option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <select id="roadSelect" class="select2 form-control custom-select">
-                                <option>路/街</option>
+                                <option selected disabled>路/街</option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <select id="intersectionSelect" class="select2 form-control custom-select">
-                                <option>路口</option>
+                                <option selected disabled>路口</option>
                             </select>
                         </div>
 
@@ -95,7 +95,7 @@
                     <h5 class="card-title m-b-0">近期事件</h5>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
+                    <table id="maintenance" class="table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th scope="col">事件名稱</th>
@@ -106,33 +106,33 @@
                             <th scope="col">動作</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        @foreach($maintenance_forms as $maintenance_form)
-                            <tr>
-                                <td>{{ $maintenance_form->content }}</td>
-                                <td>{{ $maintenance_form->name }}</td>
-                                <td class="text-danger">
-                                    @if($maintenance_form->status == 1)
-                                        緊急
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($maintenance_form->repair_status == 1)
-                                        待修中
-                                    @endif
-                                </td>
-                                <td>{{ $maintenance_form->updated_at->diffForHumans() }}</td>
-                                <td>
-                                    <a href="#" data-toggle="tooltip" data-placement="top" title="推播訊息">
-                                        <i class="mdi mdi-access-point"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" title="詳細內容">
-                                        <i class="mdi mdi-open-in-new"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
+{{--                        <tbody>--}}
+{{--                        @foreach($maintenance_forms as $maintenance_form)--}}
+{{--                            <tr>--}}
+{{--                                <td>{{ $maintenance_form->content }}</td>--}}
+{{--                                <td>{{ $maintenance_form->name }}</td>--}}
+{{--                                <td class="text-danger">--}}
+{{--                                    @if($maintenance_form->status == 1)--}}
+{{--                                        緊急--}}
+{{--                                    @endif--}}
+{{--                                </td>--}}
+{{--                                <td>--}}
+{{--                                    @if($maintenance_form->repair_status == 1)--}}
+{{--                                        待修中--}}
+{{--                                    @endif--}}
+{{--                                </td>--}}
+{{--                                <td>{{ $maintenance_form->updated_at->diffForHumans() }}</td>--}}
+{{--                                <td>--}}
+{{--                                    <a href="#" data-toggle="tooltip" data-placement="top" title="推播訊息">--}}
+{{--                                        <i class="mdi mdi-access-point"></i>--}}
+{{--                                    </a>--}}
+{{--                                    <a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" title="詳細內容">--}}
+{{--                                        <i class="mdi mdi-open-in-new"></i>--}}
+{{--                                    </a>--}}
+{{--                                </td>--}}
+{{--                            </tr>--}}
+{{--                        @endforeach--}}
+{{--                        </tbody>--}}
                     </table>
                 </div>
             </div>
@@ -293,8 +293,79 @@
     <script src="{{ URL::to('matrix/js/select2.min.js') }}"></script>
 
     <script>
+        function refreshPie(chart) {
+            chart.destroy();
+            var myPieChart = new Chart(pie, {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    title: {
+                        display: true,
+                        text: '報修故障事件統計'
+                    }
+                }
+            });
+        }
+
+        function refreshFlow(chart) {
+            chart.destroy();
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['05/21', '05/22', '05/23', '05/24', '05/25', '05/26', '05/27', '05/28', '05/29', '05/30'],
+                    datasets: [{
+                        label: '流量(/千)',
+                        data: [1.5, 1.7, 1.2, 1.4, 1.3, 1.2, 1.5, 1.2, 1.3, 1.6, 1.4],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    title: {
+                        display: true,
+                        text: '單週流量圖'
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script>
         var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
+        var flowChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ['05/21', '05/22', '05/23', '05/24', '05/25', '05/26', '05/27', '05/28', '05/29', '05/30'],
@@ -437,33 +508,138 @@
                 }
             } );
         } );
+
+
+        var maintenance_table = $('#maintenance').DataTable({
+            ajax: "api/query/test",
+            columns: [
+                {"data": "content"},
+                {"data": "name"},
+                {"data": "status"},
+                {"data": "repair_status"},
+                {"data": "updated_at"},
+                {"data": "created_at"}
+            ],
+            lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "全部"]],
+            language: {
+                "processing":   "處理中...",
+                "loadingRecords": "載入中...",
+                "lengthMenu":   "顯示 _MENU_ 項結果",
+                "zeroRecords":  "沒有符合的結果",
+                "info":         "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                "infoEmpty":    "顯示第 0 至 0 項結果，共 0 項",
+                "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                "infoPostFix":  "",
+                "search":       "搜尋全部:",
+                "paginate": {
+                    "first":    "第一頁",
+                    "previous": "上一頁",
+                    "next":     "下一頁",
+                    "last":     "最後一頁"
+                },
+                "aria": {
+                    "sortAscending":  ": 升冪排列",
+                    "sortDescending": ": 降冪排列"
+                }
+            }
+        });
+
+        //you can reload data by this!
+        maintenance_table.ajax.url( 'api/query/test1' ).load();
+    </script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
     </script>
 
     <script>
         $('#citySelect').on('change', function() {
             var city_id = this.value;
+            var district = $('#districtSelect');
+            district.empty();
+            district.append('<option selected disabled>行政區</option>');
+            district.prop('selectedIndex', 0);
+
+            var road = $('#roadSelect');
+            road.empty();
+            road.append('<option selected disabled>街/路</option>');
+            road.prop('selectedIndex', 0);
+
+            var intersection = $('#intersectionSelect');
+            intersection.empty();
+            intersection.append('<option selected disabled>路口</option>');
+            intersection.prop('selectedIndex', 0);
+
             $.ajax({
-                url:'{{ route('select.changeCity') }}',
-                method:"POST",
+                url:'api/query/city',
+                method:"GET",
                 data: {'id': city_id},
                 dataType:"json",
                 success:function(data)
                 {
-                    if (data.error.length > 0)
-                    {
-                        var error_html = '';
-                        for (var count = 0; count < data.error.length; count++)
-                        {
-                            error_html += '<div class="alert alert-danger">'+data.error[count]+'</div>';
-                        }
-                        $('#form_output').html(error_html);
-                    }
-                    else
-                    {
-                        $('#form_output').html(data.success);
-                    }
+                    $.each(data.districts, function (key, entry) {
+                        district .append($('<option></option>').attr('value', entry.id).text(entry.name));
+                    })
                 }
             })
+        });
+
+        $('#districtSelect').on('change', function() {
+            var district_id = this.value;
+            var road = $('#roadSelect');
+            road.empty();
+            road.append('<option selected disabled>街/路</option>');
+            road.prop('selectedIndex', 0);
+
+            var intersection = $('#intersectionSelect');
+            intersection.empty();
+            intersection.append('<option selected disabled>路口</option>');
+            intersection.prop('selectedIndex', 0);
+
+            $.ajax({
+                url:'api/query/district',
+                method:"GET",
+                data: {'id': district_id},
+                dataType:"json",
+                success:function(data)
+                {
+                    console.log(data);
+                    $.each(data.roads, function (key, entry) {
+                        road.append($('<option></option>').attr('value', entry.id).text(entry.name));
+                    })
+                }
+            })
+        });
+
+        $('#roadSelect').on('change', function() {
+            var road_id = this.value;
+            var intersection = $('#intersectionSelect');
+            intersection.empty();
+            intersection.append('<option selected disabled>路口</option>');
+            intersection.prop('selectedIndex', 0);
+
+            $.ajax({
+                url:'api/query/road',
+                method:"GET",
+                data: {'id': road_id},
+                dataType:"json",
+                success:function(data)
+                {
+                    console.log(data);
+                    $.each(data.intersections, function (key, entry) {
+                        intersection.append($('<option></option>').attr('value', entry.id).text(entry.name));
+                    })
+                }
+            })
+        });
+
+        $('#intersectionSelect').on('change', function() {
+            refreshPie(myPieChart);
+            refreshFlow(flowChart);
         });
     </script>
 

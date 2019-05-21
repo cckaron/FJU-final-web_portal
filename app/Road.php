@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Road extends Model
 {
+    public $incrementing = false;
+
     public function intersection(){
-        return $this->belongsToMany('App\Intersection', 'intersection_road', 'roads_id', 'intersections_id  ','id', 'id');
+        return $this->belongsToMany('App\Intersection', 'intersection_road', 'roads_id', 'intersections_id','id', 'id');
     }
 
     public function light(){

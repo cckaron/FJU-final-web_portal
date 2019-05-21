@@ -32,5 +32,10 @@ Route::group(['prefix' => 'maintenance'], function () {
 
 //query
 Route::group(['prefix' => 'query'], function () {
-    Route::get('city', 'QueryController@searchByCity');
+    Route::get('/city', 'QueryController@searchByCity');
+    Route::get('/district', 'QueryController@searchByDistrict');
+    Route::get('/road', 'QueryController@searchByRoad');
+    Route::get('/test', 'QueryController@test');
+    Route::get('/test1', 'QueryController@test1');
+
 });
