@@ -22,6 +22,12 @@ class intersectionSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
+        DB::table('intersections')->insert([
+            'name' => '建國一路/後港一路 交叉口',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
     }

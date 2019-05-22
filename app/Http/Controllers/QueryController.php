@@ -8,6 +8,7 @@ use App\Intersection;
 use App\Road;
 use App\Road_maintenance_form;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
@@ -70,16 +71,5 @@ class QueryController extends Controller
         ], 200, array(), JSON_PRETTY_PRINT);
     }
 
-    public function test1(){
-        $maintenance_forms = Road_maintenance_form::where('id', 2)->get();
 
-        foreach ($maintenance_forms as $maintenance_form){
-            $maintenance_form->name = DB::table('intersections')->where('id', $maintenance_form->intersections_id)->value('name');
-        }
-
-        return response()->json([
-            'result' => 'success',
-            'data' => $maintenance_forms
-        ], 200, array(), JSON_PRETTY_PRINT);
-    }
 }

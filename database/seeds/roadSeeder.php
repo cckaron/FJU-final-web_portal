@@ -30,6 +30,13 @@ class roadSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
+        DB::table('roads')->insert([
+            'name' => '後港一路',
+            'districts_id' => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

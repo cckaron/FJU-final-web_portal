@@ -27,6 +27,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 //maintainance
 Route::group(['prefix' => 'maintenance'], function () {
+    Route::get('get', 'MaintainanceController@get');
     Route::post('generate', 'MaintainanceController@generate');
 });
 
@@ -35,7 +36,12 @@ Route::group(['prefix' => 'query'], function () {
     Route::get('/city', 'QueryController@searchByCity');
     Route::get('/district', 'QueryController@searchByDistrict');
     Route::get('/road', 'QueryController@searchByRoad');
-    Route::get('/test', 'QueryController@test');
-    Route::get('/test1', 'QueryController@test1');
-
 });
+
+//chart
+Route::group(['prefix' => 'chart'], function () {
+    Route::group(['prefix' => 'pie'], function () {
+        Route::get('/maintenance', 'ChartController@getPie_maintenance');
+    });
+});
+

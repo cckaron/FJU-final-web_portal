@@ -106,33 +106,6 @@
                             <th scope="col">動作</th>
                         </tr>
                         </thead>
-{{--                        <tbody>--}}
-{{--                        @foreach($maintenance_forms as $maintenance_form)--}}
-{{--                            <tr>--}}
-{{--                                <td>{{ $maintenance_form->content }}</td>--}}
-{{--                                <td>{{ $maintenance_form->name }}</td>--}}
-{{--                                <td class="text-danger">--}}
-{{--                                    @if($maintenance_form->status == 1)--}}
-{{--                                        緊急--}}
-{{--                                    @endif--}}
-{{--                                </td>--}}
-{{--                                <td>--}}
-{{--                                    @if($maintenance_form->repair_status == 1)--}}
-{{--                                        待修中--}}
-{{--                                    @endif--}}
-{{--                                </td>--}}
-{{--                                <td>{{ $maintenance_form->updated_at->diffForHumans() }}</td>--}}
-{{--                                <td>--}}
-{{--                                    <a href="#" data-toggle="tooltip" data-placement="top" title="推播訊息">--}}
-{{--                                        <i class="mdi mdi-access-point"></i>--}}
-{{--                                    </a>--}}
-{{--                                    <a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" title="詳細內容">--}}
-{{--                                        <i class="mdi mdi-open-in-new"></i>--}}
-{{--                                    </a>--}}
-{{--                                </td>--}}
-{{--                            </tr>--}}
-{{--                        @endforeach--}}
-{{--                        </tbody>--}}
                     </table>
                 </div>
             </div>
@@ -148,7 +121,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" id="rule">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title m-b-0">道路規則</h5>
@@ -208,6 +181,14 @@
             </div>
         </div>
 
+        <!-- rador chart -->
+        <div class="col-md-6" id="radar">
+            <div class="card">
+                <canvas id="radarChart" width="300" height="300"></canvas>
+            </div>
+        </div>
+        <!-- rador Chart -->
+
         <!-- Line chart -->
         <div class="col-md-6">
             <div class="card">
@@ -215,6 +196,8 @@
             </div>
         </div>
         <!-- End Chart -->
+
+
     </div>
 
     <!-- start ajax correct assignment window-->
@@ -293,27 +276,25 @@
     <script src="{{ URL::to('matrix/js/select2.min.js') }}"></script>
 
     <script>
+        $('#rule').hide();
+
+
         function refreshPie(chart) {
-            chart.destroy();
-            var myPieChart = new Chart(pie, {
-                type: 'doughnut',
-                data: data,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    },
-                    title: {
-                        display: true,
-                        text: '報修故障事件統計'
-                    }
-                }
+            // chart.destroy();
+            $.ajax({
+                url: 'api/chart/pie/maintenance',
+                type: "GET",
+                data: {
+                    intersection_id: $('#intersectionSelect').val(),
+                },
+                success: function(data) {
+                    chart.config.data = data.data;
+                    chart.update();
+
+                },
             });
+
+
         }
 
         function refreshFlow(chart) {
@@ -361,6 +342,11 @@
                 }
             });
         }
+
+        function refreshDatatable(table, intersection_id) {
+            //you can reload data by this!
+            table.ajax.url( 'api/maintenance/get?intersection_id='+intersection_id ).load();
+        }
     </script>
 
     <script>
@@ -370,7 +356,7 @@
             data: {
                 labels: ['05/21', '05/22', '05/23', '05/24', '05/25', '05/26', '05/27', '05/28', '05/29', '05/30'],
                 datasets: [{
-                    label: '流量(/千)',
+                    label: '流量(/萬)',
                     data: [1.5, 1.7, 1.2, 1.4, 1.3, 1.2, 1.5, 1.2, 1.3, 1.6, 1.4],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -448,7 +434,43 @@
             }
         });
 
+        //for radar chart
+        var radar = document.getElementById('radarChart');
+        var radarData = {
+            labels: ['機車', '自小客車', '大客車', '貨車'],
+            datasets: [
+                {
+                    label: '車輛數(萬)',
+                    backgroundColor: [
+                        'rgba(255, 0, 0, 0.35)',
+                        'rgba(0, 255, 0, 0.35)',
+                        'rgba(0, 0, 255, 0.35)',
+                        'rgba(255, 255, 0, 0.35)',
+                    ],
 
+                    data: [4.3, 3.7, 2.1, 2.7]
+                }
+            ]
+        };
+        var myRadarChart = new Chart(radar, {
+            type: 'bar',
+            data: radarData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                title: {
+                    display: true,
+                    text: '車種統計'
+                }
+            }
+        });
     </script>
 
     <script>
@@ -456,6 +478,8 @@
         // For select 2
         //***********************************//
         $(".select2").select2();
+
+
 
         /****************************************
          *       Basic Table                   *
@@ -509,17 +533,66 @@
             } );
         } );
 
-
         var maintenance_table = $('#maintenance').DataTable({
-            ajax: "api/query/test",
+            ajax: {
+                'type': 'GET',
+                'url': 'api/maintenance/get',
+            },
             columns: [
-                {"data": "content"},
-                {"data": "name"},
-                {"data": "status"},
-                {"data": "repair_status"},
-                {"data": "updated_at"},
-                {"data": "created_at"}
+                {
+                    "data": "content",
+                    "width": "5%"
+                },
+                {
+                    "data": "name",
+                    "width": "20%"
+                },
+                {
+                    "data": "status",
+                    render: function(data) {
+                        if(data === 1) {
+                            return '緊急'
+                        }
+                        else {
+                            return '警告'
+                        }
+                    },
+                    defaultContent: '預設',
+                    "width": "10%"
+                },
+                {
+                    "data": "repair_status",
+                    render: function(data) {
+                        if(data === 1) {
+                            return '待修中'
+                        }
+                        else if(data === 2) {
+                            return '已派修'
+                        } else {
+                            return '已維修完成'
+                        }
+                    },
+                    defaultContent: '預設',
+                    "width": "25%"
+                },
+                {
+                    "data": "updated_at_diff",
+                    "width": "25%"
+                },
+                {
+                    "data": "id",
+                    render: function(data) {
+                        return '<a href="#" data-toggle="tooltip" data-placement="top" title="推播訊息">\n' +
+                            '<i class="mdi mdi-access-point"></i>\n' +
+                            '</a>\n' +
+                            '<a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" data-maintenance-id='+data+' title="詳細內容">\n' +
+                            '<i class="mdi mdi-open-in-new"></i>\n' +
+                            '</a>'
+                    },
+                    "width": "15%"
+                }
             ],
+
             lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "全部"]],
             language: {
                 "processing":   "處理中...",
@@ -541,11 +614,8 @@
                     "sortAscending":  ": 升冪排列",
                     "sortDescending": ": 降冪排列"
                 }
-            }
+            },
         });
-
-        //you can reload data by this!
-        maintenance_table.ajax.url( 'api/query/test1' ).load();
     </script>
 
     <script>
@@ -638,8 +708,13 @@
         });
 
         $('#intersectionSelect').on('change', function() {
+            var intersection_id = this.value;
+
             refreshPie(myPieChart);
             refreshFlow(flowChart);
+            refreshDatatable(maintenance_table, intersection_id);
+            $('#rule').show();
+            $('#radar').hide();
         });
     </script>
 

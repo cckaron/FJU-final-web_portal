@@ -14,7 +14,28 @@ class MaintainanceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('get');
+    }
+
+    public function get(){
+        $intersections_id = Input::get('intersection_id');
+        if ($intersections_id != null){
+            $maintenance_forms = Road_maintenance_form::where('intersections_id', $intersections_id)->get();
+        } else {
+             $maintenance_forms = Road_maintenance_form::all();
+        }
+
+        foreach ($maintenance_forms as $maintenance_form){
+            $maintenance_form->name = DB::table('intersections')->where('id', $maintenance_form->intersections_id)->value('name');
+            $maintenance_form->updated_at_diff = $maintenance_form->updated_at->diffForHumans();
+        }
+
+        return response()->json([
+            'result' => 'success',
+            'data' => $maintenance_forms
+        ], 200, array(), JSON_PRETTY_PRINT);
+
+
     }
 
     public function generate(Request $request){
@@ -38,7 +59,8 @@ class MaintainanceController extends Controller
 
         $isExist = DB::table('road_maintenance_forms')
             ->where('intersections_id', $intersections_id)
-            ->whereIn('status', [1, 2, 3])
+            ->where('status', 1)
+            ->where('content', $content)
             ->exists();
 
         if (! $isExist){

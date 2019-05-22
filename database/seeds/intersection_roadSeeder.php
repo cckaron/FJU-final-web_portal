@@ -30,6 +30,20 @@ class intersection_roadSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
+        DB::table('intersection_road')->insert([
+            'intersections_id' => 2,
+            'roads_id' => 2,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('intersection_road')->insert([
+            'intersections_id' => 2,
+            'roads_id' => 3,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
