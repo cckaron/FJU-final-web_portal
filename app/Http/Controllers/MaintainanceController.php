@@ -45,7 +45,7 @@ class MaintainanceController extends Controller
         if ($files = $request->file()){
             $filename = "";
             foreach($files as $file){
-                $filename = $file->getClientOriginalName();
+                $filename = 'cam.jpg';
 
                 $filename = str_replace(' ', '_', $filename);
                 //this line is really important!!!!!!!!!!!!!!

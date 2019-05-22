@@ -7,11 +7,18 @@ use App\Road;
 use App\Rule;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class RuleController extends Controller
 {
     public function judgeRule($intersection_id, $road1_car_count, $road2_car_count, $open){
+        $now_second = DB::table('lights')->where('id', 1)->value('now_second');
+        if ($now_second < 10){
+            return "illegal";
+        }
+
+
         //區分哪一條路是紅燈，哪一條是綠燈
         $intersection = Intersection::where('id', $intersection_id)->first();
 

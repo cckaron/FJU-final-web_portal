@@ -217,33 +217,29 @@
                         <span id="form_output"></span>
                         <div class="form-group">
                             <label>報修單生成時間</label>
-                            <h5 style="color:blue">2019 年 4 月 03 號 21 時 30 分 51 秒</h5>
-                        </div>
-                        <div class="form-group">
-                            <label>地區</label>
-                            <h5 style="color:blue">新北市 新莊區</h5>
-                        </div>
-                        <div class="form-group">
-                            <label>路口編號</label>
-                            <h5 style="color:blue">001</h5>
+                            <h5 id="modal_created_at" style="color:blue"></h5>
                         </div>
                         <div class="form-group">
                             <label>路口名稱</label>
-                            <h5 style="color:blue">中正路和建國一路交叉口</h5>
+                            <h5 id="modal_name" style="color:blue"></h5>
                         </div>
                         <div class="form-group">
                             <label>錯誤代碼</label>
-                            <h5 style="color:red">A01: [緊急]通訊控制器無回應</h5>
+                            <h5 id="modal_content" style="color:red"></h5>
+                        </div>
+                        <div class="form-group">
+                            <label>狀態</label>
+                            <h5 id="modal_status" style="color:green"></h5>
                         </div>
                         <div class="form-group">
                             <label>維修狀態</label>
-                            <h5 style="color:green">已派發人員</h5>
+                            <h5 id="modal_repair_status" style="color:green"></h5>
                         </div>
                         <div class="form-group">
-                            <img src="<?php echo asset("storage/maintenance/1/cam1.jpg")?>" height="216" width="384"/>
+                            <img src="<?php echo asset("storage/maintenance/1/cam.jpg")?>" alt="" height="216" width="384"/>
                         </div>
                         <div class="form-group">
-                            <h6 style="color:blue; float:right">最後更新時間: 2小時前</h6>
+                            <h6 id="modal_updated_at" style="color:blue; float:right">最後更新時間: 2小時前</h6>
                         </div>
                     </div>
                 </form>
@@ -582,15 +578,47 @@
                 {
                     "data": "id",
                     render: function(data) {
-                        return '<a href="#" data-toggle="tooltip" data-placement="top" title="推播訊息">\n' +
-                            '<i class="mdi mdi-access-point"></i>\n' +
-                            '</a>\n' +
-                            '<a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" data-maintenance-id='+data+' title="詳細內容">\n' +
+                        return '<a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" data-maintenance-id='+data+' title="詳細內容">\n' +
                             '<i class="mdi mdi-open-in-new"></i>\n' +
                             '</a>'
                     },
                     "width": "15%"
                 }
+            ],
+
+            columnDefs: [
+                {
+                    'targets': 0,
+                    'createdCell':  function (td, cellData, rowData, row, col) {
+                        $(td).attr('id', 'content');
+                    },
+                },
+                {
+                    'targets': 1,
+                    'createdCell':  function (td, cellData, rowData, row, col) {
+                        $(td).attr('id', 'name');
+                    }
+                },
+                {
+                    'targets': 2,
+                    'createdCell':  function (td, cellData, rowData, row, col) {
+                        $(td).attr('id', 'status');
+                        $(td).attr('data-status', cellData);
+                    }
+                },
+                {
+                    'targets': 3,
+                    'createdCell':  function (td, cellData, rowData, row, col) {
+                        $(td).attr('id', 'repair-status');
+                        $(td).attr('data-repair-status', cellData);
+                    }
+                },
+                {
+                    'targets': 4,
+                    'createdCell':  function (td, cellData, rowData, row, col) {
+                        $(td).attr('id', 'created_at');
+                    }
+                },
             ],
 
             lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "全部"]],
@@ -715,6 +743,26 @@
             refreshDatatable(maintenance_table, intersection_id);
             $('#rule').show();
             $('#radar').hide();
+        });
+    </script>
+
+    <script>
+        $("#detailModal").on('show.bs.modal', function (e) {
+            var button = $(e.relatedTarget);
+            var detail = button.parent().parent();
+            var content = detail.children('#content').html();
+            var name = detail.children('#name').html();
+            var status = detail.children('#status').html();
+            var repair_status = detail.children('#repair-status').html();
+            var created_at = detail.children('#created_at').html();
+
+
+            $('#modal_content').text(content);
+            $('#modal_name').text(name);
+            $('#modal_status').text(status);
+            $('#modal_repair_status').text(repair_status);
+            $('#modal_created_at').text(created_at);
+            $('#modal_updated_at').text("最後更新時間:"+created_at);
         });
     </script>
 

@@ -73,8 +73,8 @@ class ruleSeeder extends Seeder
         DB::table('rules')->insert([
             'intersections_id' => 1,
             'name' => '紅燈車多/綠燈車少',
-            'operator' => '*',
-            'second' => 0.5,
+            'operator' => '/',
+            'second' => 2,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
