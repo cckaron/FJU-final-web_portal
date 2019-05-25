@@ -36,6 +36,7 @@ Route::group(['prefix' => 'query'], function () {
     Route::get('/city', 'QueryController@searchByCity');
     Route::get('/district', 'QueryController@searchByDistrict');
     Route::get('/road', 'QueryController@searchByRoad');
+    Route::get('/intersection_road', 'QueryController@searchByIntersection');
 });
 
 //chart
@@ -43,5 +44,10 @@ Route::group(['prefix' => 'chart'], function () {
     Route::group(['prefix' => 'pie'], function () {
         Route::get('/maintenance', 'ChartController@getPie_maintenance');
     });
+});
+
+//arduino
+Route::group(['prefix' => 'arduino'], function () {
+    Route::get('/adjustSecond', 'ArduinoController@adjustSecond');
 });
 

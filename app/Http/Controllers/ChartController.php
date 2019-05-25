@@ -44,4 +44,8 @@ class ChartController extends Controller
             'data' => $data,
         ], 200, array(), JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
+
+    public function getRealtime_flow(){
+
+    }
 }

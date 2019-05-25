@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Input;
 class QueryController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth:api')->except(['searchByCity', 'searchByDistrict', 'searchByRoad', 'test', 'test1']);
+        $this->middleware('auth:api')->except(['searchByCity', 'searchByDistrict', 'searchByRoad', 'searchByIntersection', 'test']);
     }
 
     public function searchByCity(){
@@ -51,12 +51,42 @@ class QueryController extends Controller
 
         $intersections = $road->intersection()->get();
 
-
         return response()->json([
             'result' => 'success',
             'intersections' => $intersections,
         ], 200, array(), JSON_PRETTY_PRINT);
     }
+
+    public function searchByIntersection(){
+        $intersection_id = Input::get('id');
+
+        $intersection = Intersection::where('id', $intersection_id)->first();
+
+        $roads = $intersection->road()->get();
+
+        $lights = $intersection->light()->get();
+
+        //判斷當前行進方向
+        if ($lights[0]->now_color == 'red'){
+            //現在是中正路紅燈
+            $now_direct = "中正路";
+
+        } else {
+            //現在是建國一路紅燈
+            $now_direct = "建國一路";
+        }
+
+        $now_second = $lights[0]->now_second;
+
+        return response()->json([
+            'result' => 'success',
+            'roads' => $roads,
+            'lights' => $lights,
+            'now_direct' => $now_direct,
+            'now_second' => $now_second
+        ], 200, array(), JSON_PRETTY_PRINT);
+    }
+
 
     public function test(){
         $maintenance_forms = Road_maintenance_form::all();

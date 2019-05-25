@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
 
 class ArduinoController extends Controller
 {
@@ -32,4 +35,19 @@ class ArduinoController extends Controller
             ]);
     }
 
+    public function adjustSecond(){
+        $second = Input::get('second');
+        $url = 'http://192.168.50.126/change?operator=5&second='.$second;
+
+        $client = new \GuzzleHttp\Client();
+        try {
+            $res = $client->request('GET', $url);
+        } catch (GuzzleException $e) {
+            Log::info($e);
+        }
+
+        return response()->json([
+            'result' => 'success',
+        ], 200, array(), JSON_PRETTY_PRINT);
+    }
 }

@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class MainController extends Controller
 {
@@ -28,7 +29,7 @@ class MainController extends Controller
 
         $rules = Rule::with('condition')->get();
 
-        return view('index', [
+        return view('index.main', [
             'rules' => $rules,
             'cities' => $cities,
             'maintenance_forms' => $maintenance_forms,

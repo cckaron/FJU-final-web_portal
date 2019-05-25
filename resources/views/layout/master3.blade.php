@@ -8,8 +8,13 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- primary -->
     <link rel="stylesheet" href="{{ URL::to('assets/css/main.css') }}" />
 
+    <!-- matrix admin-->
+    <link rel="stylesheet" href="{{ URL::to('matrix/css/style.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::to('matrix/css/select2.min.css') }}" />
     <style>@yield('style')</style>
     @yield('style2')
 </head>
@@ -77,11 +82,33 @@
 </footer>
 <!-- Scripts -->
 
+<!-- primary -->
 <script src="{{ URL::to('assets/js/jquery.min.js') }}"></script>
 <script src="{{ URL::to('assets/js/browser.min.js') }}"></script>
 <script src="{{ URL::to('assets/js/breakpoints.min.js') }}"></script>
 <script src="{{ URL::to('assets/js/util.js') }}"></script>
 <script src="{{ URL::to('assets/js/main.js') }}"></script>
+
+<!-- matrix admin -->
+<script src="{{ URL::to('matrix/js/popper.min.js') }}"></script>
+<script src="{{ URL::to('matrix/js/jquery.min.js') }}"></script>
+<script src="{{ URL::to('matrix/js/bootstrap.min.js') }}"></script>
+<script src="{{ URL::to('matrix/js/perfect-scrollbar.jquery.min.js') }}"></script>
+<script src="{{ URL::to('matrix/js/sparkline.js') }}"></script>
+<script src="{{ URL::to('matrix/js/waves.js') }}"></script>
+<script src="{{ URL::to('matrix/js/sidebarmenu.js') }}"></script>
+<script src="{{ URL::to('matrix/js/custom.min.js') }}"></script>
+<!--Select JS -->
+<script src="{{ URL::to('matrix/js/select2.full.min.js') }}"></script>
+<script src="{{ URL::to('matrix/js/select2.min.js') }}"></script>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 <script @yield('script')></script>
 @yield('script1')
 </body>

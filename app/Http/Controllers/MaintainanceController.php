@@ -27,7 +27,7 @@ class MaintainanceController extends Controller
 
         foreach ($maintenance_forms as $maintenance_form){
             $maintenance_form->name = DB::table('intersections')->where('id', $maintenance_form->intersections_id)->value('name');
-            $maintenance_form->updated_at_diff = $maintenance_form->updated_at->diffForHumans();
+//            $maintenance_form->updated_at_diff = $maintenance_form->updated_at->diffForHumans();
         }
 
         return response()->json([
@@ -77,6 +77,7 @@ class MaintainanceController extends Controller
 
             return response()->json([
                 'result' => 'generate success',
+                'notify' => 1,
                 'intersections_id' => $intersections_id,
                 'content' => $content,
                 'profile' => auth()->user(),
@@ -85,6 +86,7 @@ class MaintainanceController extends Controller
         } else {
             return response()->json([
                 'result' => 'maintenance has been exists',
+                'notify' => 0,
                 'profile' => auth()->user(),
             ]);
         }
