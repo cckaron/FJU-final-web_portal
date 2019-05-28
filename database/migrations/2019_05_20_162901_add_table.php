@@ -16,7 +16,8 @@ class AddTable extends Migration
         Schema::create('Road_maintenance_forms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('intersections_id')->unsigned()->nullable();
-            $table->longText('content')->nullable();
+            $table->string('content')->nullable();
+            $table->longText('remark')->nullable();
             $table->integer('status')->default(1); // 1-> 緊急; 2->警戒
             $table->integer('repair_status')->default(1); //1 -> 待修中; 2-> 已派修; 3-> 修繕完成
             $table->timestamps();

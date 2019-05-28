@@ -18,28 +18,28 @@ class lightSeeder extends Seeder
 
         //light
         DB::table('lights')->insert([
-            'name' => '左向',
+            'name' => '中正路1',
             'intersections_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
         DB::table('lights')->insert([
-            'name' => '右向',
+            'name' => '中正路2',
             'intersections_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
         DB::table('lights')->insert([
-            'name' => '左向',
+            'name' => '建國一路1',
             'intersections_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
         DB::table('lights')->insert([
-            'name' => '右向',
+            'name' => '建國一路2',
             'intersections_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

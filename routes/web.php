@@ -99,7 +99,7 @@ Route::get('/arduino/{now_direct}/{now_sec}', [
    'as' => 'arduino.currentInfo'
 ]);
 
-Route::get('/judgeRule/{intersection_id}/{road1_car_count}/{road2_car_count}/{open}', [
+Route::get('/judgeRule/{intersection_id}/{l1_car}/{l2_car}/{l3_car}/{l4_car}/{open}', [
    'uses' => 'RuleController@judgeRule',
    'as' => 'rule.judge'
 ]);

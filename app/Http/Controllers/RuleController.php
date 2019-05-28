@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Intersection;
 use App\Road;
 use App\Rule;
+use Carbon\Carbon;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,17 +13,55 @@ use Illuminate\Support\Facades\Log;
 
 class RuleController extends Controller
 {
-    public function judgeRule($intersection_id, $road1_car_count, $road2_car_count, $open){
+    public function judgeRule($intersection_id, $l1_car, $l2_car, $l3_car, $l4_car, $open){
         $now_second = DB::table('lights')->where('id', 1)->value('now_second');
+
+        //回報車流量
+        DB::table('trafficflows')
+            ->insert([
+                'lights_id' => 1,
+                'car_count' => $l1_car,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+        DB::table('trafficflows')
+            ->insert([
+                'lights_id' => 2,
+                'car_count' => $l2_car,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+        DB::table('trafficflows')
+            ->insert([
+                'lights_id' => 3,
+                'car_count' => $l3_car,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+        DB::table('trafficflows')
+            ->insert([
+                'lights_id' => 4,
+                'car_count' => $l4_car,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+
+        //如果秒數小於10，設定為不合法
         if ($now_second < 10){
             return "illegal";
         }
 
+        //車輛總和
+        $road1_car_count = $l1_car + $l2_car;
+        $road2_car_count = $l3_car + $l4_car;
 
         //區分哪一條路是紅燈，哪一條是綠燈
         $intersection = Intersection::where('id', $intersection_id)->first();
 
-        $light_left = $intersection->light()->where('name', '左向')->first();
+        $light_left = $intersection->light()->where('name', '中正路1')->first();
         if ($light_left->now_color == 'red'){ // 代表左右方向為紅燈，南北方向為綠燈
             $road1_color = 'red';
             $road2_color = 'green';
@@ -73,7 +112,7 @@ class RuleController extends Controller
 
         $url .= "&second=".$ans->second;
 
-        if ($open == 1){
+        if ($open == 1 && $now_second <= 51 && $now_second >= 44){
             $client = new \GuzzleHttp\Client();
             try {
                 $res = $client->request('GET', $url);

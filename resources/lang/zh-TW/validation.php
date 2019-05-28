@@ -130,6 +130,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'remark' => [
+            'required' => '請輸入說明文字',
+        ],
     ],
 
     /*

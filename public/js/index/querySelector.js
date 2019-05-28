@@ -104,10 +104,34 @@ $.getScript("js/index/updateChart.js", function(){
         });
 
         refreshPie(myPieChart, intersection_id);
-        refreshFlow(flowChart);
+        // refreshFlow(flowChart);
         refreshDatatable(maintenance_table, intersection_id);
         $('#rule').show();
+        $('#intersection_road').show();
         $('#bar').hide();
+
+        //路口有哪些道路方向，顯示出來
+        var intersection_road = $('#intersection_road_Select');
+        intersection_road.empty();
+        intersection_road.append('<option selected disabled>請選擇路口</option>');
+        intersection_road.prop('selectedIndex', 0);
+
+        $.ajax({
+            url:'api/query/intersection_road',
+            method:"GET",
+            data: {'id': intersection_id},
+            dataType:"json",
+            success:function(data)
+            {
+                console.log(data);
+                $.each(data.roads, function (key, entry) {
+                    intersection_road.append($('<option></option>').attr('value', entry.id).text(entry.name));
+                });
+
+                $('#now_direct').text(data.now_direct);
+                $('#now_second').text(data.now_second);
+            }
+        });
     });
 
     function getParamHandler(){
@@ -117,7 +141,7 @@ $.getScript("js/index/updateChart.js", function(){
 
         if (intersection_id !== null){
             refreshPie(myPieChart, intersection_id);
-            refreshFlow(flowChart);
+            // refreshFlow(flowChart);
             refreshDatatable(maintenance_table, intersection_id);
             $('#rule').show();
             $('#intersection_road').show();

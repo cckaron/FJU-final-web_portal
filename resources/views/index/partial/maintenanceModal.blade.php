@@ -32,11 +32,13 @@
                         <label>維修狀態</label>
                         <h5 id="modal_repair_status" style="color:green"></h5>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group p-t-5">
+                        <label>近期影像</label>
+                        <br>
                         <img src="<?php echo asset("storage/maintenance/1/cam.jpg")?>" alt="" height="216" width="384"/>
                     </div>
                     <div class="form-group">
-                        <h6 id="modal_updated_at" style="color:blue; float:right">最後更新時間: 2小時前</h6>
+                        <h6 id="modal_updated_at" style="color:blue; float:right"></h6>
                     </div>
                 </div>
             </form>

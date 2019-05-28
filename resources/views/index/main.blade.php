@@ -131,37 +131,49 @@
 
             </div>
         </div>
+
+        <!-- Realtime Chart -->
+        <div class="col-md-6">
+            <div class="card">
+                <canvas id="realTimeChart" width="300" height="300"></canvas>
+            </div>
+        </div>
+        <!-- Realtime Chart -->
     </div>
 
-    <!-- START Maintenance details Modal-->
+    <!-- STARTModal-->
     @include('index.partial.maintenanceModal')
-    <!-- END Maintenance details Modal-->
+    @include('index.partial.editModal')
+    <!-- ENDModal-->
 @endsection
 
 @section('script1')
     <!--Chart JS -->
     <script src="{{ URL::to('js/chart/Chart.bundle.js') }}"></script>
     <script src="{{ URL::to('js/chart/Chart.bundle.min.js') }}"></script>
-    <script src="{{ URL::to('js/chart/Chart.js') }}"></script>
-    <script src="{{ URL::to('js/chart/Chart.min.js') }}"></script>
+{{--    <script src="{{ URL::to('js/chart/Chart.js') }}"></script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+{{--    <script src="{{ URL::to('js/chart/Chart.min.js') }}"></script>--}}
     <script src="{{ URL::to('js/chart/chartjs-plugin-streaming.min.js') }}"></script>
 
     <!--DataTables -->
     <script src="{{ URL::to('DataTables/datatables.min.js') }}"></script>
     <!-- Moment -->
-    <script src="{{ URL::to('js/moment-with-locales.js') }}"></script>
+{{--    <script src="{{ URL::to('js/moment.min.js') }}"></script>--}}
+    <script src="{{ URL::to('js/zh-tw.js') }}"></script>
     <!--Custom JS -->
     <script src="{{ URL::to('js/index/flowChart.js') }}"></script>
     <script src="{{ URL::to('js/index/pieChart.js') }}"></script>
+    <script src="{{ URL::to('js/index/realTimeChart.js') }}"></script>
     <script src="{{ URL::to('js/index/barChart.js') }}"></script>
     <script src="{{ URL::to('js/index/maintenanceTable.js') }}"></script>
     <script src="{{ URL::to('js/index/querySelector.js') }}"></script>
     <script src="{{ URL::to('js/index/ruleTable.js') }}"></script>
 
-
-
     <!-- this page's js-->
     <script>
+
         $('#rule').hide();
         $('#intersection_road').hide();
 
@@ -231,5 +243,61 @@
                 }
             });
         })
+
+
+    </script>
+
+    <script>
+        var form = '#edit_form';
+        $("#editModal").on('show.bs.modal', function (e) {
+            var button = $(e.relatedTarget);
+            var maintenance = button.parent().parent();
+            var status = maintenance.children('#repair-status').attr('data-repair-status');
+            var id = maintenance.children('#form_id').attr('data-form-id');
+
+            var option = "#modal_status option[value="+status+"]";
+            $(option).attr('selected', 'selected');
+            $('#modal_status').val(status);
+            $('#modal_id').val(id);
+
+            $(form).off().on('submit', function(event){
+                event.preventDefault();
+                var form_data = $(this).serialize();
+                $.ajax({
+                    url: '/api/maintenance/edit',
+                    method: "POST",
+                    data:form_data,
+                    dataType:"json",
+                    success:function(data)
+                    {
+                        if (data.error.length > 0)
+                        {
+                            var error_html = '';
+                            for (var count = 0; count < data.error.length; count++)
+                            {
+                                error_html += '<div class="alert alert-danger">'+data.error[count]+'</div>';
+                            }
+                            $('.form_output').html(error_html);
+                            console.log(data.error);
+                        }
+                        else
+                        {
+                            $('.form_output').html(data.success);
+                            console.log(data.success);
+
+                            //modal's id should be changed after post
+                            $('#modal_id').val(data.id);
+                            if (data.status === '1' ){
+                                maintenance.children('#status').html('在學');
+                            } else if (data.status === '2'){
+                                maintenance.children('#status').html('退學');
+                            } else if (data.status === '3'){
+                                maintenance.children('#status').html('已畢業');
+                            }
+                        }
+                    }
+                })
+            });
+        });
     </script>
 @endsection

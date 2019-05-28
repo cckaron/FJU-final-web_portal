@@ -29,6 +29,7 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['prefix' => 'maintenance'], function () {
     Route::get('get', 'MaintainanceController@get');
     Route::post('generate', 'MaintainanceController@generate');
+    Route::post('/edit', 'MaintainanceController@edit');
 });
 
 //query
@@ -44,10 +45,15 @@ Route::group(['prefix' => 'chart'], function () {
     Route::group(['prefix' => 'pie'], function () {
         Route::get('/maintenance', 'ChartController@getPie_maintenance');
     });
+
+    Route::group(['prefix' => 'realtime'], function () {
+        Route::get('/flow', 'CarController@reportCarCount');
+    });
 });
 
 //arduino
 Route::group(['prefix' => 'arduino'], function () {
     Route::get('/adjustSecond', 'ArduinoController@adjustSecond');
 });
+
 

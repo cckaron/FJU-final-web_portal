@@ -29,12 +29,12 @@ var maintenance_table = $('#maintenance').DataTable({
             "data": "repair_status",
             render: function(data) {
                 if(data === 1) {
-                    return '待修中'
+                    return '待修'
                 }
                 else if(data === 2) {
-                    return '已派修'
+                    return '維修中'
                 } else {
-                    return '已維修完成'
+                    return '修繕完成'
                 }
             },
             defaultContent: '預設',
@@ -52,7 +52,10 @@ var maintenance_table = $('#maintenance').DataTable({
             render: function(data) {
                 return '<a href="#" data-toggle="modal" data-placement="top" data-target="#detailModal" data-maintenance-id='+data+' title="詳細內容">\n' +
                     '<i class="mdi mdi-open-in-new"></i>\n' +
-                    '</a>'
+                    '</a>' +
+                '<a href="#" data-toggle="modal" data-placement="top" data-target="#editModal" data-maintenance-id='+data+' title="回報">\n' +
+                '<i class="mdi mdi-lead-pencil"></i>\n' +
+                '</a>'
             },
             "width": "15%"
         }
@@ -89,6 +92,13 @@ var maintenance_table = $('#maintenance').DataTable({
             'targets': 4,
             'createdCell':  function (td, cellData, rowData, row, col) {
                 $(td).attr('id', 'created_at');
+            }
+        },
+        {
+            'targets': 5,
+            'createdCell':  function (td, cellData, rowData, row, col) {
+                $(td).attr('id', 'form_id');
+                $(td).attr('data-form-id', cellData);
             }
         },
     ],

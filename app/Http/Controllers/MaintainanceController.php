@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class MaintainanceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except('get');
+        $this->middleware('auth:api')->except('get', 'edit');
     }
 
     public function get(){
@@ -96,7 +97,37 @@ class MaintainanceController extends Controller
     }
 
     public function edit(Request $request){
+        $id = $request->get('id');
+        $validation = Validator::make($request->all(), [
+            'status' => 'required',
+            'remark' => 'required'
+        ]);
 
+        $status = $request->get('status');
+        $remark = $request->get('remark');
+        $error_array = array();
+        $success_output = '';
+        if ($validation->fails()){
+            foreach($validation->messages()->getMessages() as $field_name => $messages)
+            {
+                $error_array[] = $messages;
+            }
+        } else {
+            DB::table('road_maintenance_forms')
+                ->where('id', $id)
+                ->update([
+                    'status' => $status,
+                    'remark' => $remark
+                ]);
+            $success_output = '<div class="alert alert-success"> 回報成功！ </div>';
+        }
+        $output = array(
+            'status' => $status,
+            'remark' => $remark,
+            'success' => $success_output,
+            'error' => $error_array,
+        );
+        echo json_encode($output);
     }
 
     public function delete(Request $request){
