@@ -288,11 +288,11 @@
                             //modal's id should be changed after post
                             $('#modal_id').val(data.id);
                             if (data.status === '1' ){
-                                maintenance.children('#status').html('在學');
+                                maintenance.children('#repair-status').html('待修');
                             } else if (data.status === '2'){
-                                maintenance.children('#status').html('退學');
+                                maintenance.children('#repair-status').html('維修中');
                             } else if (data.status === '3'){
-                                maintenance.children('#status').html('已畢業');
+                                maintenance.children('#repair-status').html('修繕完成');
                             }
                         }
                     }

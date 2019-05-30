@@ -43,7 +43,7 @@ class conditionSeeder extends Seeder
             'name' => '紅燈',
             'color' => 'red',
             'operator' => '>',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -63,7 +63,7 @@ class conditionSeeder extends Seeder
             'name' => '綠燈',
             'color' => 'green',
             'operator' => '>',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -94,7 +94,7 @@ class conditionSeeder extends Seeder
             'name' => '紅燈',
             'color' => 'red',
             'operator' => '<=',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -104,7 +104,7 @@ class conditionSeeder extends Seeder
             'name' => '綠燈',
             'color' => 'green',
             'operator' => '<=',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -115,7 +115,7 @@ class conditionSeeder extends Seeder
             'name' => '紅燈',
             'color' => 'red',
             'operator' => '<=',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -136,7 +136,7 @@ class conditionSeeder extends Seeder
             'name' => '紅燈',
             'color' => 'red',
             'operator' => '>',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -167,7 +167,7 @@ class conditionSeeder extends Seeder
             'name' => '紅燈',
             'color' => 'red',
             'operator' => '<=',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -177,7 +177,7 @@ class conditionSeeder extends Seeder
             'name' => '綠燈',
             'color' => 'green',
             'operator' => '>',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -208,7 +208,7 @@ class conditionSeeder extends Seeder
             'name' => '綠燈',
             'color' => 'green',
             'operator' => '<=',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -229,7 +229,7 @@ class conditionSeeder extends Seeder
             'name' => '綠燈',
             'color' => 'green',
             'operator' => '>',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -250,7 +250,7 @@ class conditionSeeder extends Seeder
             'name' => '紅燈',
             'color' => 'red',
             'operator' => '>',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -270,7 +270,7 @@ class conditionSeeder extends Seeder
             'name' => '綠燈',
             'color' => 'green',
             'operator' => '<=',
-            'car_count' => 6,
+            'car_count' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

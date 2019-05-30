@@ -76,7 +76,7 @@ class QueryController extends Controller
             $now_direct = "建國一路";
         }
 
-        $now_second = $lights[0]->now_second;
+        $now_second = $lights[0]->now_second -2;
 
         return response()->json([
             'result' => 'success',

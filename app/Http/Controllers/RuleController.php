@@ -92,30 +92,55 @@ class RuleController extends Controller
 
         $url = 'http://192.168.50.126/change?operand=';
 
+        $after_second = $now_second;
         switch ($ans->operator){
             case "+":
                 $url .= "1";
+                $after_second += $ans->second;
                 break;
             case "-":
                 $url .= "2";
+                $after_second -= $ans->second;
                 break;
             case "*":
                 $url .= "3";
+                $after_second *= $ans->second;
                 break;
             case "/":
                 $url .= "4";
+                $after_second /= $ans->second;
                 break;
             case "=":
                 $url .= "5";
+                $after_second = $ans->second;
                 break;
         }
 
         $url .= "&second=".$ans->second;
 
-        if ($open == 1 && $now_second <= 51 && $now_second >= 44){
+
+        if ($open == 1 && $now_second <= 74 && $now_second >= 68){
             $client = new \GuzzleHttp\Client();
             try {
                 $res = $client->request('GET', $url);
+
+                //update seconds to adjusted seconds
+                DB::table('lights')
+                    ->where('id', 1)
+                    ->update(['now_second' => $after_second]);
+
+                DB::table('lights')
+                    ->where('id', 2)
+                    ->update(['now_second' => $after_second]);
+
+                DB::table('lights')
+                    ->where('id', 3)
+                    ->update(['now_second' => $after_second]);
+
+                DB::table('lights')
+                    ->where('id', 4)
+                    ->update(['now_second' => $after_second]);
+
             } catch (GuzzleException $e) {
                 Log::info($e);
             }
